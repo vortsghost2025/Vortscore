@@ -1,4 +1,7 @@
-venv/
-*.tar.gz
-project_documentation.txt
-.git/
+__pycache__/
+*.pyc
+*.pyo
+vitalis_memory.bin
+workspace_tasks.json
+failure_report.json
+project_ledger.json
