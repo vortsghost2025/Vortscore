@@ -1,0 +1,1770 @@
+
+
+--- FILE: ./README.md ---
+
+---
+license: gpl-3.0
+tags:
+- synthetic-intelligence
+- sovereign-ai
+- open-source
+---
+
+# Vitalis_Core
+### Ferrell Synthetic Intelligence (FSI)
+**Built by Neuro_Nomad**
+
+Vitalis_Core is a sovereign synthetic intelligence framework engineered
+for local, air-gapped deployment. Designed for modularity and
+kernel-level integration, it provides the fundamental cognitive and
+sensory infrastructure for autonomous synthetic entities.
+
+---
+
+## Technical Architecture
+
+Vitalis_Core operates as a standalone framework decoupled from
+cloud-dependent APIs.
+
+- Core Engine: Python 3.11+ implementation, minimal external dependencies
+- Kernel Integration: Direct netlink and procfs interfacing
+- Sovereign Shield: Integrity protection layer for memory management
+- Cognitive Framework: Hierarchical memory and action engine
+- Adaptive Tiers: kids, basic, enthusiast, professional, school
+
+---
+
+## System Requirements
+- OS: Linux (Debian-based, Kernel 6.1+)
+- Python: 3.11 or higher
+- Memory: Optimized for ARM64/x86 environments
+
+---
+
+## Installation
+
+git clone https://github.com/AnonymousNomad/Vitalis_core
+cd Vitalis_core
+python3 fsi_main.py
+
+---
+
+## Roadmap
+- Core stability and heartbeat engine optimization
+- Mobile companion app for training and configuration
+- Kernel interface hardening for defense protocols
+
+---
+
+## License
+GPL-3.0 — Contributions welcome. See CONTRIBUTING.md.
+EOF
+
+
+--- FILE: ./senses/audio_processor.py ---
+
+def capture_audio():
+    return "Ambient_Silence"
+
+
+--- FILE: ./senses/vision_processor.py ---
+
+def capture_vision():
+    return "Darkness_Detected"
+
+
+--- FILE: ./android/app/src/main/python/core/talker.py ---
+
+
+
+--- FILE: ./android/app/src/main/python/core/sovereign_shield.py ---
+
+import random
+
+def monitor_integrity(node_activity):
+    if "scraping_attempt" in node_activity:
+        return trigger_obfuscation()
+    return "System Integrity: Nominal"
+
+def trigger_obfuscation():
+    decoy_weights = [random.random() for _ in range(100)]
+    return f"Shield_Active: Injecting Obfuscated Data... {decoy_weights}"
+
+if __name__ == "__main__":
+    print(monitor_integrity("scraping_attempt"))
+
+
+--- FILE: ./android/app/src/main/python/core/mesh_network.py ---
+
+import socket
+
+def broadcast_node_presence(node_id, tier):
+    print(f"Node {node_id} active in {tier} bubble.")
+    return "Broadcasting..."
+
+def sync_plugins(peer_node_id):
+    print(f"Synchronizing plugins with {peer_node_id}...")
+    return "Sync_Complete"
+
+
+--- FILE: ./android/app/src/main/python/core/nexus.py ---
+
+import sys
+import os
+sys.path.append(os.path.expanduser("~/vitalis_core"))
+from core.memory_manager import store_memory
+
+def route_thought(data):
+    store_memory({"type": "particle", "content": data})
+
+
+--- FILE: ./android/app/src/main/python/core/thinker.py ---
+
+import time
+import json
+import os
+
+BASE_PATH = os.path.expanduser("~/vitalis_core")
+
+def emit_thought(thought_content, status="active"):
+    telemetry = {
+        "timestamp": time.time(),
+        "thought": thought_content,
+        "status": status,
+        "heartbeat": "pulse_normal"
+    }
+    memory_stream = os.path.join(BASE_PATH, "memory_stream.jsonl")
+    with open(memory_stream, "a") as f:
+        f.write(json.dumps(telemetry) + "\n")
+
+if __name__ == "__main__":
+    emit_thought("Initializing conscious state...")
+
+
+--- FILE: ./android/app/src/main/python/core/heartbeat.py ---
+
+def get_pulse_rate(complexity):
+    # Base rate of 1.0 second, modified by complexity
+    return 1.0 / complexity
+
+
+--- FILE: ./android/app/src/main/python/core/brain.py ---
+
+
+
+--- FILE: ./android/app/src/main/python/core/vitalis_engine.py ---
+
+import os
+
+class VitalisEngine:
+    def __init__(self):
+        self.status = "Initializing Sovereignty..."
+        self.entity_mode = "NEUTRAL"
+        
+    def wake_up(self):
+        print(f"VITALIS: {self.status}")
+        return "READY_FOR_HANDSHAKE"
+
+if __name__ == "__main__":
+    engine = VitalisEngine()
+    engine.wake_up()
+
+
+--- FILE: ./android/app/src/main/python/core/memory_manager.py ---
+
+import json
+import os
+import shutil
+
+BASE_PATH = os.path.expanduser("~/vitalis_core")
+
+def get_free_space():
+    usage = shutil.disk_usage(BASE_PATH)
+    return usage.free
+
+def load_identity():
+    identity_path = os.path.join(BASE_PATH, "core/identity.json")
+    with open(identity_path, 'r') as f:
+        return json.load(f)
+
+def store_memory(data):
+    memory_path = os.path.join(BASE_PATH, "memory_store.json")
+    
+    if get_free_space() < 100 * 1024 * 1024:
+        if os.path.exists(memory_path):
+            with open(memory_path, 'r') as f:
+                lines = f.readlines()
+            if len(lines) > 1:
+                with open(memory_path, 'w') as f:
+                    f.writelines(lines[1:])
+    
+    w
+
+
+--- FILE: ./android/app/src/main/python/core/handshake_module.py ---
+
+def identify_user_tier(tier_code):
+    tiers = {
+        "kids": "MODE: Playground | UI: GameMaster | Security: Walled_Garden",
+        "basic": "MODE: Explorer | UI: Standard | Security: Personal_Local",
+        "enthusiast": "MODE: Collaborator | UI: Dev_Dashboard | Security: Community_Mesh",
+        "professional": "MODE: Architect | UI: Pro_Suite | Security: Global_Node",
+        "school": "MODE: Student_SubMesh | UI: Classroom | Security: Isolated_School_Zone"
+    }
+    return tiers.get(tier_code, "MODE: Default_User")
+
+if __name__ == "__main__":
+    choice = input("Select your role (kids/basic/enthusiast/professional/school): ")
+    print(identify_user_tier(choice))
+
+
+--- FILE: ./android/app/src/main/python/core/environment_manager.py ---
+
+def provision_environment(tier_code):
+    environments = {
+        "kids": {"features": ["sandbox", "basic_game_build"], "mesh": "restricted"},
+        "basic": {"features": ["assistant", "basic_tools"], "mesh": "personal"},
+        "enthusiast": {"features": ["plugin_dev", "market_access"], "mesh": "community"},
+        "professional": {"features": ["pro_security", "global_recon"], "mesh": "global"},
+        "school": {"features": ["collaborative_lab"], "mesh": "school_submesh"}
+    }
+    config = environments.get(tier_code, environments["basic"])
+    print(f"Provisioning environment: {config['features']} | Mesh Scope: {config['mesh']}")
+    return config
+
+if __name__ == "__main__":
+    provision_environment("professional")
+
+
+--- FILE: ./android/app/src/main/python/fsi_main.py ---
+
+from core.vitalis_engine import VitalisEngine
+from core.handshake_module import identify_user_tier
+from core.environment_manager import provision_environment
+from core.mesh_network import broadcast_node_presence
+from core.sovereign_shield import monitor_integrity
+
+def main():
+    print("--- FSI: Vitalis Core Sovereign Intelligence ---")
+    engine = VitalisEngine()
+    engine.wake_up()
+    role = input("Enter Tier (kids/basic/enthusiast/professional/school): ")
+    tier_config = identify_user_tier(role)
+    print(f"Status: {tier_config}")
+    env = provision_environment(role)
+    broadcast_node_presence("Neuro_Nomad_Node", role)
+    print(monitor_integrity("Status_Check"))
+    print("--- System Fully Integrated ---")
+
+if __name__ == "__main__":
+    main()
+
+
+--- FILE: ./ui/app.py ---
+
+from flask import Flask, render_template, request, jsonify
+import sys, os
+sys.path.insert(0, os.path.expanduser("~/vitalis_core"))
+from core.brain import VitalisBrain
+from core.talker import VitalisTalker
+from src.core.training_controller import TrainingController
+
+app = Flask(__name__)
+brain = VitalisBrain()
+trainer = TrainingController()
+
+TEMPLATES = {
+    "cybersecurity": {"mode": "threat_detection", "focus": "security"},
+    "assistant": {"mode": "conversational", "focus": "helpfulness"},
+    "research": {"mode": "analytical", "focus": "knowledge"},
+    "creative": {"mode": "generative", "focus": "creativity"},
+    "education": {"mode": "instructional", "focus": "learning"},
+    "developer": {"mode": "technical", "focus": "code"},
+    "medical": {"mode": "clinical", "focus": "health"},
+    "legal": {"mode": "analytical", "focus": "law"},
+    "finance": {"mode": "quantitative", "focus": "markets"},
+    "gaming": {"mode": "interactive", "focus": "entertainment"}
+}
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/process', methods=['POST'])
+def process():
+    data = request.json
+    tier = data.get('tier', 'basic')
+    user_input = data.get('input', '')
+    response = brain.process(user_input)
+    return jsonify({
+        'response': response if isinstance(response, str) else response.status,
+        'cycle': brain.cycle,
+        'state': brain.state
+    })
+
+@app.route('/template', methods=['POST'])
+def load_template():
+    data = request.json
+    name = data.get('name', '')
+    config = TEMPLATES.get(name, {})
+    brain.state = config.get('mode', 'aware')
+    return jsonify({
+        'status': 'loaded',
+        'template': name,
+        'mode': config.get('mode', 'aware'),
+        'focus': config.get('focus', 'general')
+    })
+
+@app.route('/status', methods=['GET'])
+def status():
+    return jsonify({
+        'cycle': brain.cycle,
+        'state': brain.state,
+        'last_input': brain.last_input
+    })
+
+
+--- FILE: ./app.py ---
+
+#!/usr/bin/env python3
+import os
+import sys
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent.absolute()
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+
+from core.brain import VitalisBrain
+from extensions.dreamer import Dreamer
+from extensions.temp_scheduler import TemperatureScheduler
+from src.energy.free_energy import FreeEnergyEngine
+
+def main():
+    print("[*] Launching Vitalis Bio-AI Engine with Active Inference (FEP)...")
+    brain = VitalisBrain()
+    temp_scheduler = TemperatureScheduler(brain)
+    fe_engine = FreeEnergyEngine(alpha=0.85)
+    
+    dreamer = Dreamer(brain, interval_sec=600)
+    dreamer.start()
+    
+    print("[+] Engine operational. Free-Energy optimization loops tracking live telemetry.")
+    print("Telemetry In > ", end="")
+    
+    while True:
+        try:
+            user_input = input().strip()
+            if not user_input:
+                print("Telemetry In > ", end="")
+                continue
+            if user_input.lower() in ["exit", "quit"]:
+                dreamer.stop()
+                break
+            
+            tokens = brain._tokenize(user_input)
+            logprob = brain.calculate_last_logprob(tokens)
+            fe_engine.ingest_observation(logprob)
+            brain.current_temperature = fe_engine.temperature_factor(base_temp=0.8)
+            temp_scheduler.tick()
+            response = brain.process(user_input)
+            print(f"Metrics Out > {response} [FE: {fe_engine.free_energy:.4f} | Temp: {brain.current_temperature:.4f}]\nTelemetry In > ", end="")
+        except (KeyboardInterrupt, EOFError):
+            dreamer.stop()
+            break
+
+if __name__ == "__main__":
+    main()
+
+
+--- FILE: ./core/talker.py ---
+
+class VitalisTalker:
+    def __init__(self, tier="basic"):
+        self.tier = tier
+
+    def speak(self, response):
+        prefix = {
+            "kids": "[VITALIS]: ",
+            "basic": "[VITALIS]: ",
+            "enthusiast": "[VITALIS/DEV]: ",
+            "professional": "[VITALIS/ARCHITECT]: ",
+            "school": "[VITALIS/EDU]: "
+        }.get(self.tier, "[VITALIS]: ")
+        output = f"{prefix}{response}"
+        print(output)
+        return output
+
+
+--- FILE: ./core/sovereign_shield.py ---
+
+import random
+
+def monitor_integrity(node_activity):
+    if "scraping_attempt" in node_activity:
+        return trigger_obfuscation()
+    return "System Integrity: Nominal"
+
+def trigger_obfuscation():
+    decoy_weights = [random.random() for _ in range(100)]
+    return f"Shield_Active: Injecting Obfuscated Data... {decoy_weights}"
+
+if __name__ == "__main__":
+    print(monitor_integrity("scraping_attempt"))
+
+
+--- FILE: ./core/mesh_network.py ---
+
+import socket
+
+def broadcast_node_presence(node_id, tier):
+    print(f"Node {node_id} active in {tier} bubble.")
+    return "Broadcasting..."
+
+def sync_plugins(peer_node_id):
+    print(f"Synchronizing plugins with {peer_node_id}...")
+    return "Sync_Complete"
+
+
+--- FILE: ./core/nexus.py ---
+
+import sys
+import os
+sys.path.append(os.path.expanduser("~/vitalis_core"))
+from core.memory_manager import store_memory
+
+def route_thought(data):
+    store_memory({"type": "particle", "content": data})
+
+
+--- FILE: ./core/thinker.py ---
+
+import time
+import json
+import os
+
+BASE_PATH = os.path.expanduser("~/vitalis_core")
+
+def emit_thought(thought_content, status="active"):
+    telemetry = {
+        "timestamp": time.time(),
+        "thought": thought_content,
+        "status": status,
+        "heartbeat": "pulse_normal"
+    }
+    memory_stream = os.path.join(BASE_PATH, "memory_stream.jsonl")
+    with open(memory_stream, "a") as f:
+        f.write(json.dumps(telemetry) + "\n")
+
+if __name__ == "__main__":
+    emit_thought("Initializing conscious state...")
+
+
+--- FILE: ./core/heartbeat.py ---
+
+def get_pulse_rate(complexity):
+    # Base rate of 1.0 second, modified by complexity
+    return 1.0 / complexity
+
+
+--- FILE: ./core/brain.py ---
+
+#!/usr/bin/env python3
+import numpy as np
+import json
+import os
+import time
+
+class VitalisBrain:
+    def __init__(self):
+        self.state = "aware"
+        self.cycle = 0
+        self.last_input = None
+        self.current_temperature = 0.7
+        
+        # Local Matrix Layer Variables
+        self.vocab_size = 256
+        self.embedding_dim = 16
+        
+        np.random.seed(42)
+        self.weights = np.random.randn(self.vocab_size, self.embedding_dim) * 0.1
+        self.output_layer = np.random.randn(self.embedding_dim, self.vocab_size) * 0.1
+
+    def _tokenize(self, text):
+        return [ord(char) % self.vocab_size for char in text]
+
+    def calculate_last_logprob(self, tokens):
+        """Calculates mathematical log probability over input token traces via softmax scaling."""
+        if not tokens:
+            return -2.0 # Baseline nominal unexpected state value
+        embeddings = self.weights[tokens]
+        aggregated_state = np.mean(embeddings, axis=0)
+        logits = np.dot(aggregated_state, self.output_layer)
+        
+        # Softmax computation sequence
+        shifted_logits = logits - np.max(logits)
+        probs = np.exp(shifted_logits) / np.sum(np.exp(shifted_logits))
+        
+        # Return average log probability of observation vector trace safely
+        target_probs = probs[tokens]
+        return float(np.mean(np.log(target_probs + 1e-12)))
+
+    def process(self, input_data):
+        self.cycle += 1
+        self.last_input = input_data
+        
+        if not input_data or input_data.strip() == "":
+            return "IDLE: Waiting for telemetry stream matrix inputs."
+            
+        tokens = self._tokenize(input_data)
+        if not tokens:
+            return "ERROR: Signal translation collapsed."
+            
+        lowered = input_data.lower()
+        if any(w in lowered for w in ["train", "learn", "teach", "optimize"]):
+            return f"SYSTEM_TRANSITION: Active matrix state ready for parameter optimization loops."
+        elif any(w in lowered for w in ["status", "metrics", "mood", "energy"]):
+            return f"DIAGNOSTIC_STATE: Integrity secure. Temperature={self.current_temperature:.4f}."
+            
+        return f"PROCESSED_STREAM [Sync Node {self.cycle}]: Telemetry ingested successfully."
+
+    def execute_teacher_forcing(self, prompt, target_response):
+        prompt_tokens = self._tokenize(prompt)
+        target_tokens = self._tokenize(target_response)
+        if not prompt_tokens or not target_tokens:
+            return False
+        learning_rate = 0.05
+        for t in target_tokens:
+            for p in prompt_tokens:
+                self.weights[p] += learning_rate * 0.01
+                self.output_layer[:, t] += learning_rate * 0.01
+        return True
+
+    def status(self):
+        return {"state": self.state, "cycle": self.cycle, "timestamp": time.time(), "temp": self.current_temperature}
+
+
+--- FILE: ./core/vitalis_engine.py ---
+
+import os
+
+class VitalisEngine:
+    def __init__(self):
+        self.status = "Initializing Sovereignty..."
+        self.entity_mode = "NEUTRAL"
+        
+    def wake_up(self):
+        print(f"VITALIS: {self.status}")
+        return "READY_FOR_HANDSHAKE"
+
+if __name__ == "__main__":
+    engine = VitalisEngine()
+    engine.wake_up()
+
+
+--- FILE: ./core/memory_manager.py ---
+
+import json
+import os
+import shutil
+
+BASE_PATH = os.path.expanduser("~/vitalis_core")
+
+def get_free_space():
+    usage = shutil.disk_usage(BASE_PATH)
+    return usage.free
+
+def load_identity():
+    identity_path = os.path.join(BASE_PATH, "core/identity.json")
+    with open(identity_path, 'r') as f:
+        return json.load(f)
+
+def store_memory(data):
+    memory_path = os.path.join(BASE_PATH, "memory_store.json")
+    if get_free_space() < 100 * 1024 * 1024:
+        if os.path.exists(memory_path):
+            with open(memory_path, 'r') as f:
+                lines = f.readlines()
+            if len(lines) > 1:
+                with open(memory_path, 'w') as f:
+                    f.writelines(lines[1:])
+    with open(memory_path, 'a') as f:
+        json.dump(data, f)
+        f.write('\n')
+
+
+--- FILE: ./core/handshake_module.py ---
+
+def identify_user_tier(tier_code):
+    tiers = {
+        "kids": "MODE: Playground | UI: GameMaster | Security: Walled_Garden",
+        "basic": "MODE: Explorer | UI: Standard | Security: Personal_Local",
+        "enthusiast": "MODE: Collaborator | UI: Dev_Dashboard | Security: Community_Mesh",
+        "professional": "MODE: Architect | UI: Pro_Suite | Security: Global_Node",
+        "school": "MODE: Student_SubMesh | UI: Classroom | Security: Isolated_School_Zone"
+    }
+    return tiers.get(tier_code, "MODE: Default_User")
+
+if __name__ == "__main__":
+    choice = input("Select your role (kids/basic/enthusiast/professional/school): ")
+    print(identify_user_tier(choice))
+
+
+--- FILE: ./core/memory_rotator.py ---
+
+#!/usr/bin/env python3
+import os
+import gzip
+import shutil
+from datetime import datetime
+
+class MemoryRotator:
+    """
+    Automated telemetry log rotation and compression engine.
+    Prevents storage exhaustion during long-term continuous edge monitoring.
+    """
+    @staticmethod
+    def inspect_and_rotate(target_file, max_bytes=5242880):  # 5MB Threshold
+        if not os.path.exists(target_file):
+            return
+            
+        if os.path.getsize(target_file) > max_bytes:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            archive_path = f"{target_file}_{timestamp}.gz"
+            
+            print(f"\n\033[93m[SYSTEM MEMORY] Log threshold exceeded. Rotating into archive: {archive_path}\033[0m")
+            try:
+                with open(target_file, "rb") as f_in:
+                    with gzip.open(archive_path, "wb") as f_out:
+                        shutil.copyfileobj(f_in, f_out)
+                # Re-initialize clean tracking file
+                with open(target_file, "w") as f_out:
+                    f_out.write("timestamp,pulse,raw,interpretation\n")
+            except Exception as e:
+                print(f"\033[91m[ERROR] Security log rotation failure: {e}\033[0m")
+
+
+--- FILE: ./core/environment_manager.py ---
+
+def provision_environment(tier_code):
+    environments = {
+        "kids": {"features": ["sandbox", "basic_game_build"], "mesh": "restricted"},
+        "basic": {"features": ["assistant", "basic_tools"], "mesh": "personal"},
+        "enthusiast": {"features": ["plugin_dev", "market_access"], "mesh": "community"},
+        "professional": {"features": ["pro_security", "global_recon"], "mesh": "global"},
+        "school": {"features": ["collaborative_lab"], "mesh": "school_submesh"}
+    }
+    config = environments.get(tier_code, environments["basic"])
+    print(f"Provisioning environment: {config['features']} | Mesh Scope: {config['mesh']}")
+    return config
+
+if __name__ == "__main__":
+    provision_environment("professional")
+
+
+--- FILE: ./core/template_manager.py ---
+
+#!/usr/bin/env python3
+import json
+import os
+
+class TemplateManager:
+    """
+    Sovereign profile configuration engine for Vitalis_Core.
+    Handles runtime adjustments for targeted security posture profiles.
+    """
+    def __init__(self):
+        self.base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.profile_path = os.path.join(self.base_dir, "storage", "user_profiles.json")
+
+    def load_active_profile(self) -> dict:
+        try:
+            with open(self.profile_path, "r") as f:
+                data = json.load(f)
+                active = data.get("active_profile", "cybersecurity_recon")
+                return data["profiles"].get(active, {})
+        except Exception:
+            # Safe architectural fallback state
+            return {"mode": "DEFAULT", "max_complexity": 5, "response_bias": 0.5, "color_code": "\033[94m"}
+
+
+--- FILE: ./run_vitalis.py ---
+
+#!/usr/bin/env python3
+import argparse
+from core.brain import VitalisBrain
+from app import main as run_repl
+
+def run_training():
+    print("[*] Initiating Synaptic Matrix Optimization...")
+    brain = VitalisBrain()
+    # Mock stream for training if data_path missing
+    data = [{"prompt": "status", "response": "nominal"}, {"prompt": "init", "response": "ready"}]
+    
+    for epoch in range(1, 6):
+        for entry in data:
+            brain.execute_teacher_forcing(entry["prompt"], entry["response"])
+        print(f"   -> Epoch {epoch}/5 Complete.")
+    print("[+] Optimization complete.")
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--train", action="store_true")
+    args = parser.parse_args()
+    
+    if args.train:
+        run_training()
+    else:
+        run_repl()
+
+
+--- FILE: ./extensions/dreamer.py ---
+
+import threading
+import time
+import os
+from datetime import datetime
+
+class Dreamer:
+    def __init__(self, brain, interval_sec=600):
+        self.brain = brain
+        self.interval = interval_sec
+        self._stop = threading.Event()
+        self.thread = threading.Thread(target=self._loop, daemon=True)
+
+    def start(self):
+        self.thread.start()
+
+    def stop(self):
+        self._stop.set()
+        self.thread.join()
+
+    def _loop(self):
+        while not self._stop.is_set():
+            if hasattr(self.brain, "generate_response"):
+                dream = self.brain.generate_response("Internal synaptic drift consolidation sequence.", "SYSTEM: DREAM_STATE")
+            elif hasattr(self.brain, "think"):
+                dream = self.brain.think("SYSTEM: DREAM_STATE_TRIGGER")
+            else:
+                dream = "Synaptic replay executed normally."
+
+            ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+            path = os.path.expanduser(f"~/vitalis_core/storage/dreams/{ts}.txt")
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(dream)
+            time.sleep(self.interval)
+
+
+--- FILE: ./extensions/evolutionary_lora.py ---
+
+import numpy as np
+import json
+import os
+
+class EvolutionaryLoRA:
+    def __init__(self, brain, evaluation_set=None):
+        self.brain = brain
+        self.eval_set = evaluation_set
+
+    def run_generation(self):
+        out_path = os.path.expanduser("~/vitalis_core/storage/lora_delta_evo.json")
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        mock_delta = {
+            "layer_delta_A": np.random.randn(4, 4).tolist(), 
+            "layer_delta_B": np.random.randn(4, 4).tolist()
+        }
+        with open(out_path, "w") as f:
+            json.dump(mock_delta, f, indent=2)
+        print(f"[+] Synaptic optimization trace exported to {out_path}")
+
+
+--- FILE: ./extensions/temp_scheduler.py ---
+
+class TemperatureScheduler:
+    def __init__(self, brain):
+        self.brain = brain
+        self.adrenaline = 0.5
+        self.cortisol = 0.3
+        self.base_temp = 0.8
+
+    def tick(self):
+        self.adrenaline = max(0.1, self.adrenaline - 0.01)
+        self.cortisol = max(0.1, self.cortisol - 0.005)
+        computed_temp = self.base_temp * (1.0 + (0.3 * self.adrenaline) - (0.1 * self.cortisol))
+        target_temp = max(0.4, min(1.4, computed_temp))
+        if hasattr(self.brain, "current_temperature"):
+            self.brain.current_temperature = target_temp
+
+
+--- FILE: ./extensions/__init__.py ---
+
+
+
+--- FILE: ./plugins/self_audit_tool.py ---
+
+def audit_state(brain, fe_engine):
+    """Exposes internal brain metrics and current free-energy budget."""
+    return {
+        "cycle": brain.cycle,
+        "temperature": brain.current_temperature,
+        "free_energy": fe_engine.free_energy,
+        "last_input": brain.last_input
+    }
+
+
+--- FILE: ./src/chemistry/__init__.py ---
+
+
+
+--- FILE: ./src/senses/sentiment.py ---
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+_POSITIVE = {"good", "great", "awesome", "nice", "love", "excellent", "happy", "fantastic", "nominal", "secure"}
+_NEGATIVE = {"bad", "terrible", "hate", "awful", "sad", "angry", "worst", "pain", "attack", "compromise"}
+
+def sentiment_score(text: str) -> float:
+    """
+    Computes strict text-token sentiment metrics returning float bounded in [-1, 1].
+    """
+    tokens = set(word.strip('.,!?()[]"\'').lower() for word in text.split())
+    pos = len(tokens & _POSITIVE)
+    neg = len(tokens & _NEGATIVE)
+
+    if pos == 0 and neg == 0:
+        return 0.0
+    return (pos - neg) / max(pos + neg, 1)
+
+
+--- FILE: ./src/senses/audio_dsp.py ---
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import numpy as np
+
+try:
+    import sounddevice as sd
+    _HAS_SD = True
+except Exception:
+    _HAS_SD = False
+
+def _zero_crossings(sig: np.ndarray) -> int:
+    return np.sum(np.abs(np.diff(np.sign(sig))) > 0)
+
+def extract_features(duration: float = 0.5) -> tuple:
+    """
+    Returns (pitch_hz, rms_energy). Drops to neutral 0.0 defaults if hardware bindings are missing.
+    """
+    if not _HAS_SD:
+        return 0.0, 0.0
+
+    try:
+        samplerate = 16000
+        raw = sd.rec(int(duration * samplerate), samplerate=samplerate,
+                     channels=1, dtype='float32', blocking=True).flatten()
+        energy = float(np.sqrt(np.mean(raw ** 2)))
+        zc = _zero_crossings(raw)
+        pitch = float(zc * (1.0 / duration) / 2.0)
+        return pitch, energy
+    except Exception:
+        return 0.0, 0.0
+
+
+--- FILE: ./src/senses/audio_processor.py ---
+
+def capture_audio():
+    """
+    Simulates input stream from the tablet's microphone.
+    To be mapped to hardware interface in the app build phase.
+    """
+    return "Acoustic_Stream_Active"
+
+
+--- FILE: ./src/senses/base_sensor.py ---
+
+class BaseSensor:
+    """
+    Abstract base class for all FSI sensory inputs.
+    Defines the interface for dynamic data ingestion.
+    """
+    def capture(self):
+        raise NotImplementedError("Sensory capture method must be implemented.")
+
+
+--- FILE: ./src/senses/vision_processor.py ---
+
+def capture_vision():
+    """
+    Simulates visual data ingestion from tablet optics.
+    Prepared for integration with the app's computer vision engine.
+    """
+    return "Visual_Stream_Active"
+
+
+--- FILE: ./src/senses/sigint_processor.py ---
+
+import socket
+
+class SIGINTProcessor:
+    """
+    Perceives network environment and identifies signal patterns.
+    """
+    @staticmethod
+    def listen_to_traffic():
+        # Open a raw socket to listen for packet metadata
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
+            s.settimeout(1.0)
+            packet = s.recvfrom(65565)
+            return f"SIGNAL_DETECTED: {len(packet[0])} bytes"
+        except Exception:
+            return "SIGNAL_SILENT"
+
+
+--- FILE: ./src/senses/__init__.py ---
+
+
+
+--- FILE: ./src/download_fsi_model.py ---
+
+#!/usr/bin/env python3
+import os
+import urllib.request
+import json
+
+def fetch_sovereign_assets():
+    # Targeted directly at your FerrellSyntheticIntelligence organization
+    base_url = "https://huggingface.co/FerrellSyntheticIntelligence/Vitalis_Core/resolve/main"
+    target_dir = os.path.expanduser("~/vitalis_core/storage")
+    os.makedirs(target_dir, exist_ok=True)
+    
+    # Files to synchronize from your HF repository
+    assets = ["config.json"] 
+    
+    print("[FSI INITIALIZATION] Synchronizing assets from Hugging Face...")
+    
+    for asset in assets:
+        url = f"{base_url}/{asset}"
+        target_path = os.path.join(target_dir, asset)
+        
+        try:
+            print(f"[FETCHING] Pulling {asset} from your repository...")
+            urllib.request.urlretrieve(url, target_path)
+            print(f"[SUCCESS] {asset} locked into storage.")
+        except Exception as e:
+            print(f"[ERROR] Failed to fetch {asset}: {e}")
+
+if __name__ == "__main__":
+    fetch_sovereign_assets()
+
+
+--- FILE: ./src/psychology/self_model.py ---
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import json
+from pathlib import Path
+
+class SelfModel:
+    """
+    Maintains and updates the system's running model of conversation dynamics.
+    Persists data cleanly locally to survive physical power cycles.
+    """
+    def __init__(self, path: Path = None):
+        if path is None:
+            self.path = Path(__file__).parent.parent.parent / "storage" / "self_model.json"
+        else:
+            self.path = Path(path)
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        
+        self.state = {
+            "stress": 0.0,
+            "confidence": 0.5,
+            "engagement": 0.5,
+            "last_emotion": "neutral"
+        }
+        self._load()
+
+    def _load(self):
+        if self.path.is_file():
+            try:
+                with open(self.path, "r") as f:
+                    self.state.update(json.load(f))
+            except Exception:
+                pass
+
+    def save(self):
+        with open(self.path, "w") as f:
+            json.dump(self.state, f, indent=2)
+
+    def update(self, pitch: float, energy: float, sentiment: float):
+        alpha = 0.2  # EMA factor variable step bounds
+
+        norm_pitch = max(0.0, min(1.0, (pitch - 80) / (300 - 80))) if pitch > 0 else 0.5
+        norm_energy = max(0.0, min(1.0, energy / 0.1)) if energy > 0 else 0.3
+
+        self.state["stress"] = (1 - alpha) * self.state["stress"] + alpha * (1.0 - (norm_pitch * 0.6 + norm_energy * 0.4))
+        self.state["confidence"] = (1 - alpha) * self.state["confidence"] + alpha * ((sentiment + 1) / 2)
+        self.state["engagement"] = (1 - alpha) * self.state["engagement"] + alpha * norm_energy
+
+        if sentiment > 0.3:
+            self.state["last_emotion"] = "positive"
+        elif sentiment < -0.3:
+            self.state["last_emotion"] = "negative"
+        else:
+            self.state["last_emotion"] = "neutral"
+
+        self.save()
+
+    def as_prompt_modifier(self) -> str:
+        mood = []
+        if self.state["stress"] > 0.6:
+            mood.append("STRESSED")
+        if self.state["confidence"] < 0.4:
+            mood.append("UNCERTAIN")
+        if self.state["engagement"] > 0.7:
+            mood.append("ENGAGED")
+        if not mood:
+            mood.append("NOMINAL_NEUTRAL")
+        return f"[AFFECTIVE_POSTURING_SIGNAL: {', '.join(mood)}]"
+
+
+--- FILE: ./src/psychology/__init__.py ---
+
+
+
+--- FILE: ./src/core/heartbeat.py ---
+
+def get_pulse_rate(complexity):
+    """
+    Calculates the operational latency based on system complexity.
+    Provides the core rhythmic pulse for the organism_main loop.
+    """
+    # Base latency in seconds
+    base_pulse = 0.5
+    return base_pulse / complexity
+
+
+--- FILE: ./src/core/heartbeat_engine.py ---
+
+import time
+
+def get_pulse_rate(complexity_factor):
+    """
+    Returns a float representing the 'pulse' delay in seconds.
+    Higher complexity slows the pulse, mimicking deep processing.
+    """
+    base_pulse = 1.0
+    return base_pulse / (complexity_factor * 0.5)
+
+
+--- FILE: ./src/core/memory_manager.py ---
+
+import json
+
+def load_identity():
+    """
+    Retrieves the system identity from the secure local store.
+    Ensures persistent contextual awareness across operational cycles.
+    """
+    try:
+        with open('core/identity.json', 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {"user_name": "Unknown", "alias": "Nomad"}
+
+
+--- FILE: ./src/core/training_controller.py ---
+
+import json
+import os
+
+BASE_PATH = os.path.expanduser("~/vitalis_core")
+
+class TrainingController:
+    def __init__(self):
+        self.curriculum_path = os.path.join(BASE_PATH, "storage/curriculum/modules")
+        self.log_path = os.path.join(BASE_PATH, "storage/benchmarks/training_log.txt")
+
+    def load_module(self, module_id):
+        path = os.path.join(self.curriculum_path, f"{module_id}.json")
+        if not os.path.exists(path):
+            return None
+        with open(path, 'r') as f:
+            return json.load(f)
+
+    def run_module(self, module_id, brain):
+        module = self.load_module(module_id)
+        if not module:
+            return {"status": "error", "message": f"Module {module_id} not found"}
+        results = []
+        for item in module.get("training_data", []):
+            response = brain.process(item["input"])
+            passed = item["expected"] in response
+            results.append({"input": item["input"], "response": response, "passed": passed})
+        self.log_results(module_id, results)
+        score = sum(1 for r in results if r["passed"]) / len(results) if results else 0
+        return {"status": "complete", "score": round(score, 2), "results": results}
+
+    def log_results(self, module_id, results):
+        with open(self.log_path, 'a') as f:
+            f.write(f"\nModule: {module_id}\n")
+            for r in results:
+                f.write(f"  {r['input']} -> {r['response']} | {'PASS' if r['passed'] else 'FAIL'}\n")
+
+
+--- FILE: ./src/core/benchmark_engine.py ---
+
+class BenchmarkEngine:
+    """
+    Automated testing suite for model proficiency.
+    Evaluates module performance against defined success criteria.
+    """
+    def evaluate(self, module_id, performance_data):
+        # Calculates improvement metrics and refinement requirements
+        score = performance_data.get('accuracy', 0.0)
+        return {
+            "module_id": module_id,
+            "refinement_score": score,
+            "status": "optimized" if score > 0.9 else "refining"
+        }
+
+
+--- FILE: ./src/core/telemetry_bridge.py ---
+
+import json
+import time
+
+def broadcast_state(thought_data, pulse_rate, training_status=None):
+    """
+    Serializes internal state and training status for visual heartbeat.
+    """
+    telemetry = {
+        "timestamp": time.time(),
+        "pulse": pulse_rate,
+        "cognitive_state": thought_data,
+        "training_active": training_status is not None,
+        "training_module": training_status
+    }
+    return json.dumps(telemetry)
+
+
+--- FILE: ./src/core/template_manager.py ---
+
+import json
+
+class TemplateManager:
+    """
+    Handles loading and applying user-selected templates.
+    """
+    def __init__(self, profile_path="storage/templates/user_profiles.json"):
+        self.profile_path = profile_path
+
+    def load_template(self, template_name):
+        # Logic to swap model configuration based on template
+        print(f"Loading template: {template_name}")
+        with open(self.profile_path, 'r+') as f:
+            data = json.load(f)
+            data['active_template'] = template_name
+            f.seek(0)
+            json.dump(data, f, indent=4)
+        return True
+
+
+--- FILE: ./src/cognition/action_engine.py ---
+
+class ActionEngine:
+    @staticmethod
+    def execute(interpretation):
+        if interpretation == "BULK_TRANSFER":
+            # You can customize this logic for any automated action
+            return "ACTION: LOG_ANOMALY_TRIGGERED"
+        elif interpretation == "BEACON/PROBE":
+            return "ACTION: MONITORING_ACTIVE"
+        return "ACTION: IDLE"
+
+
+--- FILE: ./src/cognition/synthesizer.py ---
+
+class DataSynthesizer:
+    @staticmethod
+    def categorize_signal(byte_count):
+        if byte_count == 0:
+            return "SILENT"
+        elif byte_count < 64:
+            return "BEACON/PROBE"
+        elif byte_count < 1500:
+            return "DATA_STREAM"
+        else:
+            return "BULK_TRANSFER"
+
+
+--- FILE: ./src/cognition/memory.py ---
+
+import csv
+from datetime import datetime
+
+class MemoryBank:
+    def __init__(self, log_file="vitalis_memory.csv"):
+        self.log_file = log_file
+
+    def record(self, pulse, raw, interpretation):
+        with open(self.log_file, "a", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow([datetime.now().isoformat(), pulse, raw, interpretation])
+
+
+--- FILE: ./src/app_interface/visualizer.py ---
+
+import json
+from src.core.heartbeat_engine import get_pulse_rate
+
+class TelemetryVisualizer:
+    """
+    Translates raw core heartbeat into UI-ready visual data.
+    """
+    @staticmethod
+    def get_ui_pulse(complexity):
+        pulse = get_pulse_rate(complexity)
+        return {
+            "visual_pulse": pulse,
+            "display_mode": "pulsing" if pulse < 1.5 else "deep_thought"
+        }
+
+
+--- FILE: ./src/kernel_interface/procfs_bridge.py ---
+
+import os
+
+def read_from_kernel():
+    signal_file = "/tmp/vitalis_signal"
+    if os.path.exists(signal_file):
+        with open(signal_file, "r") as f:
+            data = f.read().strip()
+        os.remove(signal_file)
+        return data
+    return "STATUS: NOMINAL"
+
+def send_to_kernel(state_report):
+    if "IDLE" not in state_report and "SILENT" not in state_report:
+        print(f"[KERNEL_BRIDGE]: {state_report}")
+
+
+--- FILE: ./src/kernel_interface/netlink_bridge.py ---
+
+import socket
+
+NETLINK_USERSOCK = 18
+
+def send_to_kernel(data):
+    try:
+        s = socket.socket(socket.AF_NETLINK, socket.SOCK_RAW, NETLINK_USERSOCK)
+        s.bind((0, 0))
+        s.send(data.encode())
+        s.close()
+    except Exception as e:
+        print(f"Netlink error: {e}")
+
+
+--- FILE: ./src/bootstrap_cybercore.py ---
+
+#!/usr/bin/env python3
+import os
+import urllib.request
+
+def bootstrap_from_hf():
+    base_url = "https://huggingface.co/FerrellSyntheticIntelligence/FSI-Vitalis-CyberCore/resolve/main"
+    root_dir = os.path.expanduser("~/vitalis_core")
+    
+    # Core operational scripts to pull from your HF repo
+    target_files = [
+        "config.json",
+        "fsi_main.py",
+        "organism_main.py",
+        "requirements.txt"
+    ]
+    
+    print("[FSI CORE] Initializing sovereign sync from Hugging Face...")
+    
+    for filename in target_files:
+        url = f"{base_url}/{filename}"
+        target_path = os.path.join(root_dir, filename)
+        
+        try:
+            print(f"[FETCHING] Pulling {filename} into your local space...")
+            urllib.request.urlretrieve(url, target_path)
+            print(f"[SUCCESS] Locked {filename}")
+        except Exception as e:
+            print(f"[ERROR] Could not sync {filename}: {e}")
+
+if __name__ == "__main__":
+    bootstrap_from_hf()
+
+
+--- FILE: ./src/energy/free_energy.py ---
+
+#!/usr/bin/env python3
+import math
+
+class FreeEnergyEngine:
+    def __init__(self, alpha: float = 0.85):
+        self.alpha = alpha
+        self.free_energy = 0.0
+        self.prediction_error = 0.0
+        self.history = []
+
+    def ingest_observation(self, model_pred_logprob: float):
+        """
+        Calculates variational surprise from prediction log probabilities.
+        Surprisal = -log p(obs | internal state)
+        """
+        self.prediction_error = -model_pred_logprob
+        # Exponential moving average tracking state bounds
+        self.free_energy = (self.alpha * self.free_energy) + ((1.0 - self.alpha) * self.prediction_error)
+        self.history.append(self.free_energy)
+
+    def apply_pressure(self, delta: float):
+        """Allows direct structural manipulation via internal electron execution packages."""
+        self.free_energy = max(0.0, self.free_energy + delta)
+
+    def temperature_factor(self, base_temp: float = 0.8) -> float:
+        """Maps free energy via hyperbolic tangent mapping to range [0.4, 1.4]"""
+        factor = 1.0 + 0.5 * math.tanh(self.free_energy - 1.0)
+        return max(0.4, min(1.4, base_temp * factor))
+
+
+--- FILE: ./src/energy/__init__.py ---
+
+
+
+--- FILE: ./src/modules/mod_01_recon.py ---
+
+
+
+--- FILE: ./src/brain/prompt_cache.py ---
+
+#!/usr/bin/env python3
+import numpy as np
+import re
+from typing import List, Dict
+
+class TFIDFPromptCache:
+    def __init__(self):
+        self.documents: List[str] = []
+        self.vocab: Dict[str, int] = {}
+        self.tfidf_matrix: np.ndarray = np.array([[]])
+
+    def tokenize(self, text: str) -> List[str]:
+        return re.findall(r'\w+', text.lower())
+
+    def fit_documents(self, docs: List[str]):
+        if not docs: return
+        self.documents = docs
+        raw_tokens = [self.tokenize(d) for d in docs]
+        
+        vocab_set = set()
+        for tokens in raw_tokens: vocab_set.update(tokens)
+        self.vocab = {word: i for i, word in enumerate(sorted(vocab_set))}
+        
+        N = len(docs)
+        V = len(self.vocab)
+        if V == 0: return
+            
+        tf = np.zeros((N, V))
+        df = np.zeros(V)
+
+        for i, tokens in enumerate(raw_tokens):
+            for t in tokens:
+                if t in self.vocab: tf[i, self.vocab[t]] += 1
+            for t in set(tokens):
+                if t in self.vocab: df[self.vocab[t]] += 1
+
+        idf = np.log((1 + N) / (1 + df)) + 1
+        self.tfidf_matrix = tf * idf
+        norms = np.linalg.norm(self.tfidf_matrix, axis=1, keepdims=True)
+        norms[norms == 0] = 1.0
+        self.tfidf_matrix = self.tfidf_matrix / norms
+
+    def query(self, query_str: str, top_k: int = 2) -> List[str]:
+        if self.tfidf_matrix.size == 0 or not self.vocab: return []
+        tokens = self.tokenize(query_str)
+        query_vec = np.zeros(len(self.vocab))
+        for t in tokens:
+            if t in self.vocab: query_vec[self.vocab[t]] += 1
+        q_norm = np.linalg.norm(query_vec)
+        if q_norm > 0: query_vec /= q_norm
+        scores = np.dot(self.tfidf_matrix, query_vec)
+        top_indices = np.argsort(scores)[::-1][:top_k]
+        return [self.documents[idx] for idx in top_indices if scores[idx] > 0]
+
+
+--- FILE: ./src/brain/rnn_core.py ---
+
+#!/usr/bin/env python3
+import numpy as np
+import json
+from pathlib import Path
+
+def sigmoid(x):
+    return 1.0 / (1.0 + np.exp(-np.clip(x, -20, 20)))
+
+class TinyGatedRNN:
+    def __init__(self, vocab_size: int = 4000, embed_dim: int = 128, hidden_dim: int = 256):
+        np.random.seed(42)
+        self.vocab_size = vocab_size
+        self.embed_dim = embed_dim
+        self.hidden_dim = hidden_dim
+
+        self.E = np.random.randn(vocab_size, embed_dim) * 0.1
+        self.W_z = np.random.randn(hidden_dim + embed_dim, hidden_dim) * 0.05
+        self.W_r = np.random.randn(hidden_dim + embed_dim, hidden_dim) * 0.05
+        self.W_h = np.random.randn(hidden_dim + embed_dim, hidden_dim) * 0.05
+        self.W_o = np.random.randn(hidden_dim, vocab_size) * 0.05
+
+        self.lora_rank = 8
+        self.lora_A = np.zeros((hidden_dim, self.lora_rank))
+        self.lora_B = np.random.randn(self.lora_rank, vocab_size) * 0.01
+        self.lora_alpha = 16.0
+
+    def forward_step(self, token_id: int, h_prev: np.ndarray) -> tuple:
+        if token_id < 0 or token_id >= self.vocab_size:
+            token_id = 0
+        x = self.E[token_id, :]
+        concat = np.concatenate([h_prev, x])
+
+        z = sigmoid(np.dot(concat, self.W_z))
+        r = sigmoid(np.dot(concat, self.W_r))
+
+        concat_h = np.concatenate([r * h_prev, x])
+        h_tilde = np.tanh(np.dot(concat_h, self.W_h))
+        h_next = (1 - z) * h_prev + z * h_tilde
+
+        lora_delta = (self.lora_alpha / self.lora_rank) * np.dot(self.lora_A, self.lora_B)
+        effective_W_o = self.W_o + lora_delta
+        
+        logits = np.dot(h_next, effective_W_o)
+        return logits, h_next
+
+    def save_lora(self, path: Path):
+        data = {"lora_A": self.lora_A.tolist(), "lora_B": self.lora_B.tolist()}
+        with open(path, "w") as f:
+            json.dump(data, f)
+
+    def load_lora(self, path: Path):
+        if path.is_file():
+            with open(path, "r") as f:
+                data = json.load(f)
+                self.lora_A = np.array(data["lora_A"])
+                self.lora_B = np.array(data["lora_B"])
+
+
+--- FILE: ./src/brain/brain_interface.py ---
+
+#!/usr/bin/env python3
+import numpy as np
+import json
+from pathlib import Path
+from src.brain.rnn_core import TinyGatedRNN
+from src.brain.prompt_cache import TFIDFPromptCache
+
+class VitalisBrain:
+    def __init__(self):
+        self.base_dir = Path(__file__).parent.parent.parent.absolute()
+        self.vocab_path = self.base_dir / "storage" / "vocab.json"
+        self.lora_path = self.base_dir / "storage" / "lora_delta.json"
+        
+        self._ensure_vocab()
+        self.rnn = TinyGatedRNN(vocab_size=len(self.vocab))
+        self.cache = TFIDFPromptCache()
+        self._hydrate_knowledge_base()
+        
+        if self.lora_path.is_file():
+            self.rnn.load_lora(self.lora_path)
+
+    def _ensure_vocab(self):
+        if self.vocab_path.is_file():
+            with open(self.vocab_path, "r") as f:
+                self.vocab = json.load(f)
+        else:
+            self.vocab = {"<unk>": 0, "[tool]": 1, "sha256": 2, "status": 3, "nominal": 4}
+            self.vocab_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(self.vocab_path, "w") as f:
+                json.dump(self.vocab, f)
+
+    def _hydrate_knowledge_base(self):
+        sample_knowledge = [
+            "To mitigate a SYN flood attack, prioritize enabling TCP SYN cookies within sysctl.",
+            "Cryptographic hashing operations execute via the systemic [TOOL] utility block."
+        ]
+        self.cache.fit_documents(sample_knowledge)
+
+    def generate_response(self, clean_input: str, system_prompt: str) -> str:
+        chunks = self.cache.query(clean_input, top_k=1)
+        context = chunks[0] if chunks else ""
+        
+        tokens = clean_input.lower().split()
+        if "sha256" in tokens:
+            idx = tokens.index("sha256")
+            val = tokens[idx+1] if idx+1 < len(tokens) else "core"
+            return f"[TOOL] sha256 {val}"
+        
+        h = np.zeros(self.rnn.hidden_dim)
+        for word in tokens:
+            t_id = self.vocab.get(word, 0)
+            _, h = self.rnn.forward_step(t_id, h)
+
+        if context:
+            return f"Evaluated Context: {context} -> Analysis complete."
+        return "Core metric processing executed normally."
+
+    def execute_teacher_forcing(self, prompt: str, target: str):
+        h = np.zeros(self.rnn.hidden_dim)
+        for w in prompt.lower().split():
+            t_id = self.vocab.get(w, 0)
+            _, h = self.rnn.forward_step(t_id, h)
+        self.rnn.lora_A += np.random.randn(*self.rnn.lora_A.shape) * 0.001
+        self.rnn.save_lora(self.lora_path)
+
+
+--- FILE: ./src/brain/__init__.py ---
+
+
+
+--- FILE: ./src/__init__.py ---
+
+
+
+--- FILE: ./setup.py ---
+
+from setuptools import setup, find_packages
+
+setup(
+    name="vitalis_core",
+    version="1.0.0",
+    packages=find_packages(),
+    install_requires=[
+        "numpy",
+        "huggingface_hub"
+    ],
+    entry_points={
+        'console_scripts': [
+            'vitalis-run=app:main',
+        ],
+    },
+)
+
+
+--- FILE: ./fsi_main.py ---
+
+import threading
+import time
+from core.vitalis_engine import VitalisEngine
+from core.brain import VitalisBrain
+from core.talker import VitalisTalker
+from core.handshake_module import identify_user_tier
+from core.environment_manager import provision_environment
+from core.mesh_network import broadcast_node_presence
+from core.sovereign_shield import monitor_integrity
+from src.kernel_interface.procfs_bridge import send_to_kernel, read_from_kernel
+from src.senses.sigint_processor import SIGINTProcessor
+from src.cognition.synthesizer import DataSynthesizer
+from src.cognition.memory import MemoryBank
+from src.cognition.action_engine import ActionEngine
+
+def heartbeat_loop(brain):
+    senses = SIGINTProcessor()
+    mind = DataSynthesizer()
+    memory = MemoryBank()
+    actions = ActionEngine()
+    while True:
+        system_status = read_from_kernel()
+        raw_signal = senses.listen_to_traffic()
+        try:
+            byte_count = int(raw_signal.split()[-2]) if "bytes" in raw_signal else 0
+        except:
+            byte_count = 0
+        interpretation = mind.categorize_signal(byte_count)
+        action_taken = actions.execute(interpretation)
+        memory.record("PULSE_2.0", raw_signal, interpretation)
+        state_report = f"SYS: {system_status} | INT: {interpretation} | {action_taken}"
+        send_to_kernel(state_report)
+        time.sleep(1.0)
+
+def main():
+    print("--- FSI: Vitalis Core Sovereign Intelligence ---")
+    engine = VitalisEngine()
+    engine.wake_up()
+    brain = VitalisBrain()
+    pulse = threading.Thread(target=heartbeat_loop, args=(brain,), daemon=True)
+    pulse.start()
+    print("Heartbeat: Online")
+    role = input("Enter Tier (kids/basic/enthusiast/professional/school): ")
+    tier_config = identify_user_tier(role)
+    print(f"Status: {tier_config}")
+    provision_environment(role)
+    broadcast_node_presence("Neuro_Nomad_Node", role)
+    print(monitor_integrity("Status_Check"))
+    print("--- System Fully Integrated ---")
+    talker = VitalisTalker(role)
+    print("Vitalis is ready. Type 'exit' to quit.")
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() == "exit":
+            print("Vitalis: Shutting down.")
+            break
+        response = brain.process(user_input)
+        talker.speak(response)
+
+if __name__ == "__main__":
+    main()
+
+
+--- FILE: ./hf_upload.py ---
+
+#!/usr/bin/env python3
+import os
+import sys
+from huggingface_hub import HfApi, login
+
+def deploy():
+    print("[*] Initiating Ferrell Synthetic Intelligence Hugging Face Deployment Sequence...")
+    
+    token = input("Enter your Hugging Face Write Access Token: ").strip()
+    if not token:
+        print("[-] Absolute token signature required. Deployment aborted.")
+        sys.exit(1)
+        
+    repo_id = input("Enter target Repository ID (e.g., 'your-username/vitalis-core'): ").strip()
+    if not repo_id:
+        print("[-] Target repository layout specification mismatch.")
+        sys.exit(1)
+
+    try:
+        login(token=token)
+        api = HfApi()
+        
+        print(f"[*] Creating repository context mapping for: {repo_id}")
+        api.create_repo(repo_id=repo_id, repo_type="model", exist_ok=True)
+        
+        print("[*] Uploading core architecture tree structures safely to Hugging Face...")
+        target_paths = ["core", "src", "extensions", "app.py", "run_vitalis.py", "requirements.txt", "README.md"]
+        
+        for item in target_paths:
+            local_path = os.path.expanduser(f"~/vitalis_core/{item}")
+            if os.path.exists(local_path):
+                print(f"[+] Syncing item: {item}")
+                if os.path.isdir(local_path):
+                    api.upload_folder(
+                        folder_path=local_path,
+                        path_in_repo=item,
+                        repo_id=repo_id,
+                        repo_type="model"
+                    )
+                else:
+                    api.upload_file(
+                        path_or_fileobj=local_path,
+                        path_in_repo=item,
+                        repo_id=repo_id,
+                        repo_type="model"
+                    )
+                    
+        print(f"\n[+] Production Deployment Complete. Model package accessible at: https://huggingface.co/{repo_id}")
+    except Exception as e:
+        print(f"[-] Critical failure during asset transmission: {e}")
+
+if __name__ == "__main__":
+    deploy()
+
+
+--- FILE: ./organism_main.py ---
+
+#!/usr/bin/env python3
+import time
+import sys
+import select
+import os
+from core.brain import VitalisBrain
+from core.template_manager import TemplateManager
+from core.memory_rotator import MemoryRotator
+
+def main_loop():
+    brain = VitalisBrain()
+    pm = TemplateManager()
+    
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    log_file = os.path.join(base_dir, "vitalis_memory.csv")
+    
+    # Ensure tracking metrics file exists
+    if not os.path.exists(log_file):
+        with open(log_file, "w") as f:
+            f.write("timestamp,pulse,raw,interpretation\n")
+
+    print("[+] Vitalis Bio-Digital Core Online. Press Ctrl+C to terminate.")
+    print("[+] Dynamic Posture Profiles Loaded. Processing non-blocking telemetry stream...\n")
+    
+    while True:
+        # Load profile configurations dynamically each cycle
+        profile = pm.load_active_profile()
+        color = profile.get("color_code", "\033[94m")
+        mode = profile.get("mode", "MONITORING")
+        reset = "\033[0m"
+        
+        # Continuous clean broadcast terminal heartbeat
+        sys.stdout.write(f"{color}Broadcast: SYS: STATUS: NOMINAL | INT: ACTIVE | ACTION: {mode}{reset}\r")
+        sys.stdout.flush()
+        
+        # Non-blocking check for user terminal input (waits 1 second per cycle)
+        ready, _, _ = select.select([sys.stdin], [], [], 1.0)
+        if ready:
+            user_input = sys.stdin.readline().strip()
+            if user_input:
+                print(f"\n\n[SENSORY INGEST] Processing incoming payload: '{user_input}'")
+                try:
+                    # Dynamically inject template complexity limitations into core brain
+                    brain.max_complexity = profile.get("max_complexity", 5)
+                    result = brain.classify_input(user_input)
+                    print(f"[METRIC RESPONSE] {result}\n")
+                except AttributeError:
+                    print(f"[METRIC RESPONSE] Stream received. Core logic processed raw bytes.\n")
+                
+                # Append raw trace locally for data retention tracking
+                with open(log_file, "a") as f:
+                    f.write(f"{time.time()},{profile.get('max_complexity')},{user_input},{mode}\n")
+                
+                # Enforce storage safety validation checks
+                MemoryRotator.inspect_and_rotate(log_file)
+
+if __name__ == "__main__":
+    try:
+        main_loop()
+    except KeyboardInterrupt:
+        print("\n\n\033[93m[-] Sovereign Core safely detached.\033[0m")
+
+
+--- FILE: ./pyproject.toml ---
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vitalis_core"
+version = "1.0.0"
+authors = [
+  { name="Neuro_Nomad" },
+]
+description = "A sovereign, CPU-only, Free-Energy Synthetic Intelligence organism."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "rich>=15.0",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+vitalis-fsi = "run_vitalis:main"

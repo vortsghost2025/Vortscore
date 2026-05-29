@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vitalis_core"
+version = "1.0.0"
+authors = [
+  { name="Neuro_Nomad" },
+]
+description = "A sovereign, CPU-only, Free-Energy Synthetic Intelligence organism."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "rich>=15.0",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+vitalis-fsi = "run_vitalis:main"

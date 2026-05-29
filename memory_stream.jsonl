@@ -1,0 +1,102 @@
+{"timestamp": 1779801758.1934993, "thought": "INPUT_RECEIVED: hello", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779801847.6253397, "thought": "INPUT_RECEIVED: hello", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779801847.635372, "thought": "QUERY_DETECTED: how does this work", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779801847.6358202, "thought": "TRAINING_SIGNAL: train me", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779801847.636093, "thought": "INPUT_RECEIVED: build something", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779801983.421398, "thought": "QUERY_DETECTED: how do you work", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779801983.421627, "thought": "QUERY_DETECTED: what are you", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779801983.4217257, "thought": "TRAINING_SIGNAL: train me on this", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779801983.4218016, "thought": "TRAINING_SIGNAL: learn from this data", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779801983.4218776, "thought": "INPUT_RECEIVED: hello", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779801983.4219477, "thought": "INPUT_RECEIVED: build something new", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779802275.8991802, "thought": "QUERY_DETECTED: how do you work?", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824408.8456085, "thought": "INPUT_RECEIVED: # This forces a \"SYN_FLOOD\" signal into the system to verify the Security Gate", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824408.8557105, "thought": "INPUT_RECEIVED: echo \"SYSTEM_STATUS: SYN_FLOOD detected on port 22\" | python3 ~/vitalis_core/fsi_main.py --inject-test", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824453.3403358, "thought": "INPUT_RECEIVED: # Force the signal into your engine's detection path", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824453.3412187, "thought": "INPUT_RECEIVED: echo \"SYN_FLOOD detected on port 22\" > /tmp/vitalis_signal", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824495.402315, "thought": "INPUT_RECEIVED: eexxit", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824648.9796598, "thought": "INPUT_RECEIVED: Traceback (most recent call last):", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824648.9811358, "thought": "INPUT_RECEIVED:   File \"/home/droid/vitalis_core/fsi_main.py\", line 10, in <module>", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824648.9813826, "thought": "INPUT_RECEIVED:     from src.kernel_interface.procfs_bridge import send_to_kernel, read_from_kernel", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824648.981577, "thought": "INPUT_RECEIVED: ImportError: cannot import name 'send_to_kernel' from 'src.kernel_interface.procfs_bridge' (/home/droid/vitalis_core/src/kernel_interface/procfs_bridge.py)", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824648.9817767, "thought": "INPUT_RECEIVED: droid@localhost:~/vitalis_sec$ echo \"SYN_FLOOD\" > /tmp/vitalis_signal", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824908.2811656, "thought": "INPUT_RECEIVED: echo \"SYN_FLOOD\" > /tmp/vitalis_signal", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824909.1259444, "thought": "INPUT_RECEIVED: echo \"SYN_FLOOD\" > /tmp/vitalis_signal", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824909.2964516, "thought": "INPUT_RECEIVED: echo \"SYN_FLOOD\" > /tmp/vitalis_signal", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824909.4641068, "thought": "INPUT_RECEIVED: echo \"SYN_FLOOD\" > /tmp/vitalis_signal", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824909.7360022, "thought": "INPUT_RECEIVED: echo \"SYN_FLOOD\" > /tmp/vitalis_signal", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779824910.9998245, "thought": "IDLE: No input received", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826646.1297657, "thought": "THREAT_DETECTED: port scan detected", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826646.1302857, "thought": "THREAT_DETECTED: monitor network traffic", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826646.1305158, "thought": "THREAT_DETECTED: what is a buffer overflow", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826646.130692, "thought": "THREAT_DETECTED: unauthorized access attempt", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826646.1309268, "thought": "DEFENSIVE_ACTION: harden the firewall", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826728.4253168, "thought": "DEFENSIVE_ACTION: port scan detected", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826728.4256387, "thought": "DEFENSIVE_ACTION: monitor network traffic", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826728.425825, "thought": "THREAT_DETECTED: what is a buffer overflow", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826728.4259758, "thought": "THREAT_DETECTED: unauthorized access attempt", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826728.4260805, "thought": "DEFENSIVE_ACTION: harden the firewall", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826790.246572, "thought": "THREAT_DETECTED: port scan detected", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826790.2469668, "thought": "DEFENSIVE_ACTION: monitor network traffic", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826790.2471697, "thought": "THREAT_DETECTED: what is a buffer overflow", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826790.2473402, "thought": "THREAT_DETECTED: unauthorized access attempt", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826790.2474926, "thought": "DEFENSIVE_ACTION: harden the firewall", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826910.6269498, "thought": "THREAT_DETECTED: port scan detected", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826910.6273067, "thought": "DEFENSIVE_ACTION: monitor network traffic", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826910.6275163, "thought": "QUERY_DETECTED: what is a buffer overflow", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826910.6277235, "thought": "THREAT_DETECTED: unauthorized access attempt", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779826910.6279235, "thought": "DEFENSIVE_ACTION: harden the firewall", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779828115.1654234, "thought": "THREAT_DETECTED [HIGH]", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779828115.165953, "thought": "DEFENSIVE_ACTION", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779828115.166267, "thought": "THREAT_DETECTED [LOW]", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779828115.166569, "thought": "THREAT_DETECTED [MEDIUM]", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779828115.166859, "thought": "DEFENSIVE_ACTION", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779829574.4994202, "thought": "THREAT_DETECTED [HIGH]", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779829574.4998856, "thought": "DEFENSIVE_ACTION", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779829574.5001948, "thought": "THREAT_DETECTED [LOW]", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779829574.5004795, "thought": "THREAT_DETECTED [MEDIUM]", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779829574.5008128, "thought": "DEFENSIVE_ACTION", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779830119.937816, "thought": "THREAT_DETECTED [HIGH]", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779830119.9395509, "thought": "DEFENSIVE_ACTION", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779830119.9412382, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831165.6854067, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831166.68885, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831167.6929145, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831168.6997402, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831169.7031882, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831170.7048855, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831171.7069917, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831172.7100604, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831173.714291, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831174.7177098, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831175.7234406, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831176.724913, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831177.729022, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831178.7362175, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831179.7402499, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831180.7447686, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831181.7488034, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831182.7526705, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831183.7569401, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831184.760778, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831185.7649057, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831186.7684176, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831187.7725928, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831188.7805889, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831189.7834144, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831190.7861042, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779831191.7905085, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779832454.752843, "thought": "INPUT_RECEIVED: professional", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779832772.064033, "thought": "INPUT_RECEIVED: hello ", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779833052.418979, "thought": "INPUT_RECEIVED: hi", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779833981.6585295, "thought": "THREAT_DETECTED [HIGH]", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779833981.659037, "thought": "DEFENSIVE_ACTION", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779833981.65939, "thought": "THREAT_DETECTED [MEDIUM]", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779833981.6597075, "thought": "DEFENSIVE_ACTION", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779834192.7603817, "thought": "THREAT_DETECTED [HIGH]", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779834192.762892, "thought": "DEFENSIVE_ACTION", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779834192.7651162, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779834455.9398422, "thought": "THREAT_DETECTED [HIGH]", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779834455.9427948, "thought": "DEFENSIVE_ACTION", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779834455.945846, "thought": "INPUT_RECEIVED", "status": "active", "heartbeat": "pulse_normal"}
+{"timestamp": 1779911937.3992867, "thought": "INPUT_RECEIVED: hello", "status": "active", "heartbeat": "pulse_normal"}

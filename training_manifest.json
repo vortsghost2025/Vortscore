@@ -1,0 +1,6 @@
+{
+    "model_name": "vitalis_coder_v1",
+    "dataset_path": "./system_blueprint.txt",
+    "export_format": "pytorch",
+    "target_output": "gguf"
+}

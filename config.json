@@ -1,0 +1,7 @@
+{
+    "project_name": "Vitalis-Core",
+    "base_path": "~/vitalis_core",
+    "identity_file": "core/identity.json",
+    "memory_file": "memory_store.json",
+    "version": "1.0.0-alpha"
+}

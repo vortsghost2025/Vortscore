@@ -1,0 +1,494 @@
+import typer
+from .src.brain.brain_interface import VitalisBrain
+
+app = typer.Typer()
+
+@app.command()
+def evolve(manifest: str = typer.Option(..., help="Path to training manifest")):
+    print(f"Loading manifest: {manifest}")
+    # Initialize your training logic here
+    typer.echo("Evolution sequence initialized.")
+
+if __name__ == "__main__":
+    app()
+from .cli import cli
+if __name__ == "__main__":
+    cli()
+import yaml
+from pathlib import Path
+DEFAULT_CONFIG = {"storage_root": str(Path.home() / "vitalis_core"), "log_file": "vitalis.log", "log_level": "INFO"}
+def load_config():
+    path = Path.home() / "vitalis_core" / "config.yaml"
+    if path.is_file():
+        with open(path, "r") as f: return {**DEFAULT_CONFIG, **yaml.safe_load(f)}
+    return DEFAULT_CONFIG
+import logging, sys
+from pathlib import Path
+from .config import load_config
+cfg = load_config()
+logging.basicConfig(level=cfg["log_level"], format="%(asctime)s %(levelname)s %(message)s", 
+                    handlers=[logging.StreamHandler(sys.stdout)])
+logger = logging.getLogger("vitalis")
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+_POSITIVE = {"good", "great", "awesome", "nice", "love", "excellent", "happy", "fantastic", "nominal", "secure"}
+_NEGATIVE = {"bad", "terrible", "hate", "awful", "sad", "angry", "worst", "pain", "attack", "compromise"}
+
+def sentiment_score(text: str) -> float:
+    """
+    Computes strict text-token sentiment metrics returning float bounded in [-1, 1].
+    """
+    tokens = set(word.strip('.,!?()[]"\'').lower() for word in text.split())
+    pos = len(tokens & _POSITIVE)
+    neg = len(tokens & _NEGATIVE)
+
+    if pos == 0 and neg == 0:
+        return 0.0
+    return (pos - neg) / max(pos + neg, 1)
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import numpy as np
+
+try:
+    import sounddevice as sd
+    _HAS_SD = True
+except Exception:
+    _HAS_SD = False
+
+def _zero_crossings(sig: np.ndarray) -> int:
+    return np.sum(np.abs(np.diff(np.sign(sig))) > 0)
+
+def extract_features(duration: float = 0.5) -> tuple:
+    """
+    Returns (pitch_hz, rms_energy). Drops to neutral 0.0 defaults if hardware bindings are missing.
+    """
+    if not _HAS_SD:
+        return 0.0, 0.0
+
+    try:
+        samplerate = 16000
+        raw = sd.rec(int(duration * samplerate), samplerate=samplerate,
+                     channels=1, dtype='float32', blocking=True).flatten()
+        energy = float(np.sqrt(np.mean(raw ** 2)))
+        zc = _zero_crossings(raw)
+        pitch = float(zc * (1.0 / duration) / 2.0)
+        return pitch, energy
+    except Exception:
+        return 0.0, 0.0
+def capture_audio():
+    """
+    Simulates input stream from the tablet's microphone.
+    To be mapped to hardware interface in the app build phase.
+    """
+    return "Acoustic_Stream_Active"
+class BaseSensor:
+    """
+    Abstract base class for all FSI sensory inputs.
+    Defines the interface for dynamic data ingestion.
+    """
+    def capture(self):
+        raise NotImplementedError("Sensory capture method must be implemented.")
+def capture_vision():
+    """
+    Simulates visual data ingestion from tablet optics.
+    Prepared for integration with the app's computer vision engine.
+    """
+    return "Visual_Stream_Active"
+import socket
+from ...logger import logger
+
+class SIGINTProcessor:
+    @staticmethod
+    def listen_to_traffic():
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_TCP)
+            s.settimeout(1.0)
+            packet = s.recvfrom(65565)
+            return f"SIGNAL_DETECTED: {len(packet[0])} bytes"
+        except Exception:
+            return "SIGNAL_SILENT"
+import json
+from pathlib import Path
+import numpy as np
+import faiss
+from sentence_transformers import SentenceTransformer
+from ...logger import logger
+from ...config import load_config
+
+_cfg = load_config()
+STORAGE = Path(_cfg["storage_root"]) / "storage"
+INDEX_DIR = STORAGE / "faiss_index"
+KNOWLEDGE_DIR = STORAGE / "knowledge"
+
+class VectorStore:
+    def __init__(self, model_name="sentence-transformers/all-MiniLM-L6-v2"):
+        self.model = SentenceTransformer(model_name)
+        self.index = None
+        self.doc_texts = []
+        self._load_or_build()
+
+    def _load_or_build(self):
+        if INDEX_DIR.is_dir() and (INDEX_DIR / "index.faiss").exists():
+            logger.info("Loading existing local FAISS index")
+            self.index = faiss.read_index(str(INDEX_DIR / "index.faiss"))
+            with (INDEX_DIR / "metadata.json").open("r", encoding="utf-8") as f:
+                self.doc_texts = json.load(f)["texts"]
+        else:
+            self._build_index()
+
+    def _build_index(self):
+        INDEX_DIR.mkdir(parents=True, exist_ok=True)
+        KNOWLEDGE_DIR.mkdir(parents=True, exist_ok=True)
+        docs = [p.read_text(encoding="utf-8") for p in KNOWLEDGE_DIR.rglob("*") if p.suffix in {".txt", ".md"}]
+        if not docs:
+            logger.warning(f"No knowledge files found in {KNOWLEDGE_DIR}.")
+            self.index = faiss.IndexFlatL2(self.model.get_sentence_embedding_dimension())
+            return
+        embeddings = self.model.encode(docs, normalize_embeddings=True)
+        self.index = faiss.IndexFlatL2(embeddings.shape[1])
+        self.index.add(np.array(embeddings, dtype="float32"))
+        self.doc_texts = docs
+        faiss.write_index(self.index, str(INDEX_DIR / "index.faiss"))
+        with (INDEX_DIR / "metadata.json").open("w", encoding="utf-8") as f:
+            json.dump({"texts": self.doc_texts}, f)
+
+    def search(self, query: str, top_k: int = 3):
+        if self.index is None or self.index.ntotal == 0: return []
+        q_vec = self.model.encode([query], normalize_embeddings=True)
+        _, I = self.index.search(np.array(q_vec, dtype="float32"), top_k)
+        return [self.doc_texts[idx] for idx in I[0] if 0 <= idx < len(self.doc_texts)]
+def get_pulse_rate(complexity):
+    """
+    Calculates the operational latency based on system complexity.
+    Provides the core rhythmic pulse for the organism_main loop.
+    """
+    # Base latency in seconds
+    base_pulse = 0.5
+    return base_pulse / complexity
+import time
+
+def get_pulse_rate(complexity_factor):
+    """
+    Returns a float representing the 'pulse' delay in seconds.
+    Higher complexity slows the pulse, mimicking deep processing.
+    """
+    base_pulse = 1.0
+    return base_pulse / (complexity_factor * 0.5)
+import time
+from ...logger import logger
+
+class VitalisEngine:
+    def __init__(self):
+        self._awake = False
+
+    def wake_up(self):
+        if not self._awake:
+            logger.info("VitalisEngine waking up...")
+            self._awake = True
+            time.sleep(0.2)
+            logger.info("VitalisEngine online. Sovereign local operation confirmed.")
+import json
+
+def load_identity():
+    """
+    Retrieves the system identity from the secure local store.
+    Ensures persistent contextual awareness across operational cycles.
+    """
+    try:
+        with open('core/identity.json', 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {"user_name": "Unknown", "alias": "Nomad"}
+import json
+import os
+
+BASE_PATH = os.path.expanduser("~/vitalis_core")
+
+class TrainingController:
+    def __init__(self):
+        self.curriculum_path = os.path.join(BASE_PATH, "storage/curriculum/modules")
+        self.log_path = os.path.join(BASE_PATH, "storage/benchmarks/training_log.txt")
+
+    def load_module(self, module_id):
+        path = os.path.join(self.curriculum_path, f"{module_id}.json")
+        if not os.path.exists(path):
+            return None
+        with open(path, 'r') as f:
+            return json.load(f)
+
+    def run_module(self, module_id, brain):
+        module = self.load_module(module_id)
+        if not module:
+            return {"status": "error", "message": f"Module {module_id} not found"}
+        results = []
+        for item in module.get("training_data", []):
+            response = brain.process(item["input"])
+            passed = item["expected"] in response
+            results.append({"input": item["input"], "response": response, "passed": passed})
+        self.log_results(module_id, results)
+        score = sum(1 for r in results if r["passed"]) / len(results) if results else 0
+        return {"status": "complete", "score": round(score, 2), "results": results}
+
+    def log_results(self, module_id, results):
+        with open(self.log_path, 'a') as f:
+            f.write(f"\nModule: {module_id}\n")
+            for r in results:
+                f.write(f"  {r['input']} -> {r['response']} | {'PASS' if r['passed'] else 'FAIL'}\n")
+class BenchmarkEngine:
+    """
+    Automated testing suite for model proficiency.
+    Evaluates module performance against defined success criteria.
+    """
+    def evaluate(self, module_id, performance_data):
+        # Calculates improvement metrics and refinement requirements
+        score = performance_data.get('accuracy', 0.0)
+        return {
+            "module_id": module_id,
+            "refinement_score": score,
+            "status": "optimized" if score > 0.9 else "refining"
+        }
+import json
+import time
+
+def broadcast_state(thought_data, pulse_rate, training_status=None):
+    """
+    Serializes internal state and training status for visual heartbeat.
+    """
+    telemetry = {
+        "timestamp": time.time(),
+        "pulse": pulse_rate,
+        "cognitive_state": thought_data,
+        "training_active": training_status is not None,
+        "training_module": training_status
+    }
+    return json.dumps(telemetry)
+import time
+import threading
+from ...logger import logger
+from ..kernel_interface.procfs_bridge import send_to_kernel, read_from_kernel
+from ..senses.sigint_processor import SIGINTProcessor
+
+class HeartbeatLoop(threading.Thread):
+    def __init__(self, brain, interval: float = 1.0):
+        super().__init__(daemon=True)
+        self.brain = brain
+        self.interval = interval
+        self._stop_event = threading.Event()
+
+    def run(self):
+        senses = SIGINTProcessor()
+        logger.info(f"Heartbeat loop started (interval={self.interval}s)")
+        
+        while not self._stop_event.is_set():
+            status = read_from_kernel()
+            raw_signal = senses.listen_to_traffic()
+            action = "ACTION: MONITORING" if "SIGNAL_DETECTED" in raw_signal else "ACTION: IDLE"
+            
+            state_report = f"SYS: {status} | SENSE: {raw_signal} | {action}"
+            send_to_kernel(state_report)
+            time.sleep(self.interval)
+
+    def stop(self):
+        self._stop_event.set()
+import json
+
+class TemplateManager:
+    """
+    Handles loading and applying user-selected templates.
+    """
+    def __init__(self, profile_path="storage/templates/user_profiles.json"):
+        self.profile_path = profile_path
+
+    def load_template(self, template_name):
+        # Logic to swap model configuration based on template
+        print(f"Loading template: {template_name}")
+        with open(self.profile_path, 'r+') as f:
+            data = json.load(f)
+            data['active_template'] = template_name
+            f.seek(0)
+            json.dump(data, f, indent=4)
+        return True
+import numpy as np
+from pathlib import Path
+from ...logger import logger
+from ...config import load_config
+from ..energy.free_energy import FreeEnergyEngine
+
+_cfg = load_config()
+
+class EvolutionaryLoRA:
+    def __init__(self, brain):
+        self.brain = brain
+        self.free_energy_engine = FreeEnergyEngine()
+        self.out_path = Path(_cfg["storage_root"]) / "storage" / "lora_delta_evo.json"
+
+    def run_generation(self) -> None:
+        # Simulated local teacher-forcing evaluation
+        fake_logprob = -np.random.rand()
+        self.free_energy_engine.ingest_observation(fake_logprob)
+        
+        if self.free_energy_engine.free_energy < 0.5:
+            self.out_path.parent.mkdir(parents=True, exist_ok=True)
+            self.out_path.touch()
+            logger.info(f"LoRA improvement kept (free-energy={self.free_energy_engine.free_energy:.3f})")
+        else:
+            logger.info(f"LoRA discarded (free-energy={self.free_energy_engine.free_energy:.3f})")
+from ...logger import logger
+
+class TemperatureScheduler:
+    def __init__(self, brain):
+        self.brain = brain
+        self.base_temp = 0.8
+        self.adrenaline = 0.5
+        self.cortisol = 0.3
+
+    def tick(self):
+        self.adrenaline = max(0.1, self.adrenaline - 0.01)
+        self.cortisol = max(0.1, self.cortisol - 0.005)
+
+        target = max(0.4, min(1.4, self.base_temp * (1.0 + (0.3 * self.adrenaline) - (0.1 * self.cortisol))))
+        if hasattr(self.brain, "current_temperature"):
+            self.brain.current_temperature = target
+from pathlib import Path
+from ...logger import logger
+
+SIGNAL_FILE = Path("/tmp/vitalis_signal")
+
+def read_from_kernel() -> str:
+    if SIGNAL_FILE.is_file():
+        try:
+            data = SIGNAL_FILE.read_text().strip()
+            SIGNAL_FILE.unlink()
+            return data
+        except Exception:
+            pass
+    return "STATUS: NOMINAL"
+
+def send_to_kernel(state_report: str) -> None:
+    if "IDLE" not in state_report:
+        logger.info(f"[KERNEL_BRIDGE] {state_report}")
+import socket
+
+NETLINK_USERSOCK = 18
+
+def send_to_kernel(data):
+    try:
+        s = socket.socket(socket.AF_NETLINK, socket.SOCK_RAW, NETLINK_USERSOCK)
+        s.bind((0, 0))
+        s.send(data.encode())
+        s.close()
+    except Exception as e:
+        print(f"Netlink error: {e}")
+import math
+from ...logger import logger
+
+class FreeEnergyEngine:
+    def __init__(self, alpha: float = 0.85):
+        self.alpha = alpha
+        self.free_energy = 0.0
+
+    def ingest_observation(self, model_pred_logprob: float) -> None:
+        self.free_energy = self.alpha * self.free_energy + (1 - self.alpha) * (-model_pred_logprob)
+        logger.debug(f"Free-energy updated: {self.free_energy:.4f}")
+
+    def temperature_factor(self, base_temp: float = 0.8) -> float:
+        factor = 1.0 + 0.5 * math.tanh(self.free_energy - 1.0)
+        return max(0.4, min(1.4, base_temp * factor))
+#!/usr/bin/env python3
+import numpy as np
+import re
+from typing import List, Dict
+
+class TFIDFPromptCache:
+    def __init__(self):
+        self.documents: List[str] = []
+        self.vocab: Dict[str, int] = {}
+        self.tfidf_matrix: np.ndarray = np.array([[]])
+
+    def tokenize(self, text: str) -> List[str]:
+        return re.findall(r'\w+', text.lower())
+
+    def fit_documents(self, docs: List[str]):
+        if not docs: return
+        self.documents = docs
+        raw_tokens = [self.tokenize(d) for d in docs]
+        
+        vocab_set = set()
+        for tokens in raw_tokens: vocab_set.update(tokens)
+        self.vocab = {word: i for i, word in enumerate(sorted(vocab_set))}
+        
+        N = len(docs)
+        V = len(self.vocab)
+        if V == 0: return
+            
+        tf = np.zeros((N, V))
+        df = np.zeros(V)
+
+        for i, tokens in enumerate(raw_tokens):
+            for t in tokens:
+                if t in self.vocab: tf[i, self.vocab[t]] += 1
+            for t in set(tokens):
+                if t in self.vocab: df[self.vocab[t]] += 1
+
+        idf = np.log((1 + N) / (1 + df)) + 1
+        self.tfidf_matrix = tf * idf
+        norms = np.linalg.norm(self.tfidf_matrix, axis=1, keepdims=True)
+        norms[norms == 0] = 1.0
+        self.tfidf_matrix = self.tfidf_matrix / norms
+
+    def query(self, query_str: str, top_k: int = 2) -> List[str]:
+        if self.tfidf_matrix.size == 0 or not self.vocab: return []
+        tokens = self.tokenize(query_str)
+        query_vec = np.zeros(len(self.vocab))
+        for t in tokens:
+            if t in self.vocab: query_vec[self.vocab[t]] += 1
+        q_norm = np.linalg.norm(query_vec)
+        if q_norm > 0: query_vec /= q_norm
+        scores = np.dot(self.tfidf_matrix, query_vec)
+        top_indices = np.argsort(scores)[::-1][:top_k]
+        return [self.documents[idx] for idx in top_indices if scores[idx] > 0]
+import json
+import numpy as np
+from pathlib import Path
+from ...logger import logger
+
+def sigmoid(x):
+    return 1.0 / (1.0 + np.exp(-np.clip(x, -20, 20)))
+
+class TinyGatedRNN:
+    def __init__(self, vocab_size=4000, embed_dim=128, hidden_dim=256):
+        np.random.seed(42)
+        self.vocab_size = vocab_size
+        self.hidden_dim = hidden_dim
+        self.E = np.random.randn(vocab_size, embed_dim) * 0.1
+        self.W_z = np.random.randn(hidden_dim + embed_dim, hidden_dim) * 0.05
+        self.W_h = np.random.randn(hidden_dim + embed_dim, hidden_dim) * 0.05
+        self.W_o = np.random.randn(hidden_dim, vocab_size) * 0.05
+        self.lora_rank = 8
+        self.lora_A = np.zeros((hidden_dim, self.lora_rank))
+        self.lora_B = np.random.randn(self.lora_rank, vocab_size) * 0.01
+
+    def forward_step(self, token_id, h_prev):
+        x = self.E[token_id % self.vocab_size, :]
+        concat = np.concatenate([h_prev, x])
+        z = sigmoid(np.dot(concat, self.W_z))
+        h_next = (1 - z) * h_prev + z * np.tanh(np.dot(concat, self.W_h))
+        logits = np.dot(h_next, self.W_o) + np.dot(np.dot(h_next, self.lora_A), self.lora_B)
+        return logits, h_next
+from .rnn_core import TinyGatedRNN
+import numpy as np
+
+class VitalisBrain:
+    def __init__(self):
+        self.rnn = TinyGatedRNN()
+        self.hidden = np.zeros(self.rnn.hidden_dim)
+
+    def generate_response(self, text, system_prompt):
+        # Local, private inference only
+        tokens = [ord(c) % 4000 for c in text]
+        for t in tokens:
+            _, self.hidden = self.rnn.forward_step(t, self.hidden)
+        return "Internal state updated. Logic processed locally."
+__version__ = '1.0.0'

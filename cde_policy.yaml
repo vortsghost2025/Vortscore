@@ -1,0 +1,8 @@
+quality_gates:
+  min_coverage: 80.0
+  fail_on_warning: true
+  max_complexity: 10
+  security_strictness: "high"
+deployment:
+  merge_strategy: "ff-only"
+  auto_tag: true

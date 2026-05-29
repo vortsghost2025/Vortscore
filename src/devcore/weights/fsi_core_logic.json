@@ -1,0 +1,196 @@
+{
+    "Module": {
+        "weight": 1.13,
+        "associations": []
+    },
+    "Import": {
+        "weight": 1.95,
+        "associations": []
+    },
+    "Expr": {
+        "weight": 2.74,
+        "associations": []
+    },
+    "Try": {
+        "weight": 1.68,
+        "associations": []
+    },
+    "ClassDef": {
+        "weight": 1.13,
+        "associations": []
+    },
+    "If": {
+        "weight": 1.95,
+        "associations": []
+    },
+    "alias": {
+        "weight": 1.12,
+        "associations": []
+    },
+    "Call": {
+        "weight": 1.14,
+        "associations": []
+    },
+    "ImportFrom": {
+        "weight": 1.12,
+        "associations": []
+    },
+    "ExceptHandler": {
+        "weight": 1.68,
+        "associations": []
+    },
+    "FunctionDef": {
+        "weight": 1.14,
+        "associations": [
+            "function_design"
+        ]
+    },
+    "Compare": {
+        "weight": 1.77,
+        "associations": []
+    },
+    "Assign": {
+        "weight": 1.13,
+        "associations": []
+    },
+    "Attribute": {
+        "weight": 1.14,
+        "associations": []
+    },
+    "Name": {
+        "weight": 1.21,
+        "associations": []
+    },
+    "arguments": {
+        "weight": 1.14,
+        "associations": []
+    },
+    "Return": {
+        "weight": 1.13,
+        "associations": []
+    },
+    "Eq": {
+        "weight": 1.72,
+        "associations": []
+    },
+    "Constant": {
+        "weight": 1.13,
+        "associations": []
+    },
+    "Load": {
+        "weight": 1.22,
+        "associations": []
+    },
+    "arg": {
+        "weight": 1.17,
+        "associations": []
+    },
+    "UnaryOp": {
+        "weight": 1.65,
+        "associations": []
+    },
+    "JoinedStr": {
+        "weight": 1.99,
+        "associations": []
+    },
+    "Store": {
+        "weight": 1.13,
+        "associations": []
+    },
+    "Not": {
+        "weight": 1.64,
+        "associations": []
+    },
+    "FormattedValue": {
+        "weight": 1.94,
+        "associations": []
+    },
+    "With": {
+        "weight": 1.75,
+        "associations": []
+    },
+    "withitem": {
+        "weight": 1.75,
+        "associations": []
+    },
+    "Dict": {
+        "weight": 1.11,
+        "associations": []
+    },
+    "In": {
+        "weight": 1.62,
+        "associations": []
+    },
+    "For": {
+        "weight": 1.71,
+        "associations": []
+    },
+    "Tuple": {
+        "weight": 1.63,
+        "associations": []
+    },
+    "Pass": {
+        "weight": 1.63,
+        "associations": []
+    },
+    "BoolOp": {
+        "weight": 1.61,
+        "associations": []
+    },
+    "AugAssign": {
+        "weight": 1.61,
+        "associations": []
+    },
+    "Subscript": {
+        "weight": 1.75,
+        "associations": []
+    },
+    "keyword": {
+        "weight": 1.85,
+        "associations": []
+    },
+    "And": {
+        "weight": 1.61,
+        "associations": []
+    },
+    "Add": {
+        "weight": 1.65,
+        "associations": []
+    },
+    "NotIn": {
+        "weight": 1.62,
+        "associations": []
+    },
+    "BinOp": {
+        "weight": 1.67,
+        "associations": []
+    },
+    "NotEq": {
+        "weight": 1.61,
+        "associations": []
+    },
+    "List": {
+        "weight": 1.69,
+        "associations": []
+    },
+    "Raise": {
+        "weight": 1.61,
+        "associations": []
+    },
+    "Slice": {
+        "weight": 1.61,
+        "associations": []
+    },
+    "USub": {
+        "weight": 1.61,
+        "associations": []
+    },
+    "Sub": {
+        "weight": 1.61,
+        "associations": []
+    },
+    "Div": {
+        "weight": 1.62,
+        "associations": []
+    }
+}

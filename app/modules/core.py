@@ -1,0 +1,1 @@
+def start(): print('Core System Initialized')

@@ -1,0 +1,4 @@
+venv/
+*.tar.gz
+project_documentation.txt
+.git/

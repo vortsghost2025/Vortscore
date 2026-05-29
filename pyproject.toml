@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vitalis_ide"
+version = "2.2.0"
+authors = [{name = "Neuro_Nomad", email = "ferrell.tech@example.com"}]
+description = "Sovereign Intelligence Framework"
+dependencies = [
+    "click",
+    "numpy",
+    "torch",
+    "transformers",
+    "faiss-cpu"
+]
+
+[project.scripts]
+vitalis = "vitalis_ide.cli.main:cli"
