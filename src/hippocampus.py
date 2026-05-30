@@ -2,25 +2,20 @@ import numpy as np
 import os
 
 class Hippocampus:
-    def __init__(self, filename="vitalis_memory.bin", dim=10000, capacity=1000):
-        self.filename = filename
-        self.dim = dim
-        self.capacity = capacity
-        self.size = capacity * dim * 1
-        
-        self.fd = os.open(self.filename, os.O_RDWR | os.O_CREAT)
-        os.ftruncate(self.fd, self.size)
-        
-        self.mem = np.memmap(self.filename, dtype=np.int8, mode="r+", shape=(capacity, dim))
+    def __init__(self, path=None):
+        self.path = path or os.path.expanduser("~/.vitalis_workspace/hippocampus.npy")
+        os.makedirs(os.path.dirname(self.path), exist_ok=True)
+        if os.path.exists(self.path):
+            self.memory = np.load(self.path, allow_pickle=True).item()
+        else:
+            self.memory = {}
 
-    def store(self, index, vector):
-        if index >= self.capacity:
-            raise IndexError("Memory capacity exceeded")
-        self.mem[index] = vector
-        self.mem.flush()
+    def store(self, slot, vector):
+        self.memory[slot] = vector
+        np.save(self.path, self.memory)
 
-    def recall(self, index):
-        return self.mem[index].copy()
+    def recall(self, slot):
+        return self.memory.get(slot, None)
 
-    def close(self):
-        self.mem.flush()
+    def all_slots(self):
+        return list(self.memory.keys())
