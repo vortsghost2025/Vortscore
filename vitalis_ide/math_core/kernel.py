@@ -23,31 +23,11 @@ class VitalisKernel:
         self.codebook_path.parent.mkdir(parents=True, exist_ok=True)
         np.save(self.codebook_path, self.codebook)
 
-    def _get_ngram_vector(self, ngram: str) -> np.ndarray:
-        """Deterministic vector per character n-gram. Same n-gram = same vector always."""
-        seed = 0
-        for i, c in enumerate(ngram):
-            seed ^= ord(c) << (i * 4)
-        seed = abs(seed) % (2**31)
-        rng = np.random.default_rng(seed=seed)
-        return rng.choice([-1, 1], size=self.dim).astype(np.int8)
-
     def _get_token_vector(self, token: str) -> np.ndarray:
-        """
-        Build token vector from character trigrams.
-        'authenticate' and 'authentication' share most trigrams
-        so their vectors will be naturally similar.
-        """
         if token not in self.codebook:
-            t = token.lower()
-            # Generate trigrams — short tokens use the whole string
-            ngrams = [t[i:i+3] for i in range(max(1, len(t) - 2))]
-            bundle = np.zeros(self.dim, dtype=np.int32)
-            for ng in ngrams:
-                bundle += self._get_ngram_vector(ng)
-            result = np.sign(bundle).astype(np.int8)
-            result[result == 0] = 1
-            self.codebook[token] = result
+            self.codebook[token] = np.random.choice(
+                [-1, 1], size=self.dim
+            ).astype(np.int8)
             self._save_codebook()
         return self.codebook[token]
 
@@ -55,29 +35,23 @@ class VitalisKernel:
         rng = np.random.default_rng(seed=position)
         return rng.choice([-1, 1], size=self.dim).astype(np.int8)
 
-    def vectorize_tokens(self, tokens: list, positional: bool = False) -> np.ndarray:
-        """
-        Encode tokens into a single hypervector.
-        positional=False: pure semantic bundling (best for similarity search)
-        positional=True:  position-aware (best for code fingerprinting)
-        """
+    def vectorize_tokens(self, tokens: list, positional: bool = True) -> np.ndarray:
         bundle = np.zeros(self.dim, dtype=np.int32)
         for i, token in enumerate(tokens):
-            token_vec = self._get_token_vector(token)
+            token_vec = self._get_token_vector(str(token))
             if positional:
                 pos_vec = self._get_position_vector(i)
                 bound = hdc_engine.bind(token_vec, pos_vec)
-                bundle += bound
             else:
-                bundle += token_vec
+                bound = token_vec
+            bundle += bound.astype(np.int32)
         result = np.sign(bundle).astype(np.int8)
         result[result == 0] = 1
         return result
 
     def vectorize_source(self, source_code: str) -> np.ndarray:
-        """Code fingerprinting uses positional encoding for structural accuracy."""
         tokens = self._extract_tokens(source_code)
-        return self.vectorize_tokens(tokens, positional=True)
+        return self.vectorize_tokens(tokens)
 
     def vectorize_file(self, file_path: str) -> np.ndarray:
         path = Path(file_path)
