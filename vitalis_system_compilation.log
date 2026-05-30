@@ -1,0 +1,521 @@
+=========================================================================
+         FERRELL SYNTHETIC INTELLIGENCE - FULL PRODUCTION TREE AUDIT     
+=========================================================================
+Timestamp: Wed May 27 16:50:00 UTC 2026
+Directory Topology:
+------------------
+.
+./memory_store.json
+./PROJECT_MISSION.md
+./README.md
+./bootstrap.sh
+./senses
+./senses/__pycache__
+./senses/__pycache__/audio_processor.cpython-311.pyc
+./senses/__pycache__/vision_processor.cpython-311.pyc
+./senses/audio_processor.py
+./senses/vision_processor.py
+./android
+./android/app
+./android/app/src
+./ui
+./ui/templates
+./ui/templates/index.html
+./ui/app.py
+./vitalis_memory.csv
+./circulatory
+./app.py
+./config.json
+./check_and_compile.sh
+./contact.md
+./DOCUMENTATION
+./DOCUMENTATION/SENSES.md
+./DOCUMENTATION/ARCHITECTURE.md
+./DOCUMENTATION/VISUAL_TELEMETRY.md
+./vitalis_shadow
+./core
+./core/talker.py
+./core/sovereign_shield.py
+./core/mesh_network.py
+./core/nexus.py
+./core/thinker.py
+./core/__pycache__
+./core/__pycache__/handshake_module.cpython-311.pyc
+./core/__pycache__/talker.cpython-311.pyc
+./core/__pycache__/environment_manager.cpython-311.pyc
+./core/__pycache__/memory_manager.cpython-311.pyc
+./core/__pycache__/nexus.cpython-311.pyc
+./core/__pycache__/vitalis_engine.cpython-311.pyc
+./core/__pycache__/heartbeat.cpython-311.pyc
+./core/__pycache__/brain.cpython-311.pyc
+./core/__pycache__/thinker.cpython-311.pyc
+./core/__pycache__/memory_rotator.cpython-311.pyc
+./core/__pycache__/sovereign_shield.cpython-311.pyc
+./core/__pycache__/template_manager.cpython-311.pyc
+./core/__pycache__/mesh_network.cpython-311.pyc
+./core/heartbeat.py
+./core/brain.py
+./core/vitalis_engine.py
+./core/memory_manager.py
+./core/handshake_module.py
+./core/identity.json
+./core/memory_rotator.py
+./core/environment_manager.py
+./core/template_manager.py
+./storage
+./storage/curriculum
+./storage/curriculum/expert_system.json
+./storage/curriculum/modules
+./storage/templates
+./storage/templates/cybersecurity_recon.json
+./storage/templates/template_index.json
+./storage/templates/user_profiles.json
+./storage/config.json
+./storage/user_profiles.json
+./storage/benchmarks
+./storage/benchmarks/config.json
+./storage/benchmarks/results
+./storage/benchmarks/training_log.txt
+./run_vitalis.py
+./extensions
+./extensions/dreamer.py
+./extensions/evolutionary_lora.py
+./extensions/temp_scheduler.py
+./extensions/__init__.py
+./plugins
+./src
+./src/chemistry
+./src/chemistry/__init__.py
+./src/senses
+./src/senses/__pycache__
+./src/senses/sensory_gateway.sh
+./src/senses/sentiment.py
+./src/senses/audio_dsp.py
+./src/senses/audio_processor.py
+./src/senses/base_sensor.py
+./src/senses/vision_processor.py
+./src/senses/sigint_processor.py
+./src/senses/__init__.py
+./src/__pycache__
+./src/__pycache__/__init__.cpython-311.pyc
+./src/download_fsi_model.py
+./src/psychology
+./src/psychology/self_model.py
+./src/psychology/__init__.py
+./src/core
+./src/core/__pycache__
+./src/core/heartbeat.py
+./src/core/heartbeat_engine.py
+./src/core/memory_manager.py
+./src/core/training_controller.py
+./src/core/benchmark_engine.py
+./src/core/telemetry_bridge.py
+./src/core/template_manager.py
+./src/cognition
+./src/cognition/action_engine.py
+./src/cognition/__pycache__
+./src/cognition/synthesizer.py
+./src/cognition/memory.py
+./src/app_interface
+./src/app_interface/__pycache__
+./src/app_interface/visualizer.py
+./src/kernel_interface
+./src/kernel_interface/vitalis_ioctl.h
+./src/kernel_interface/vitalis_module.c
+./src/kernel_interface/procfs_bridge.py
+./src/kernel_interface/__pycache__
+./src/kernel_interface/Makefile
+./src/kernel_interface/shared_buffer.c
+./src/kernel_interface/netlink_bridge.py
+./src/kernel_interface/kernel_bridge.h
+./src/kernel_interface/drivers
+./src/bootstrap_cybercore.py
+./src/energy
+./src/energy/free_energy.py
+./src/energy/__init__.py
+./src/modules
+./src/modules/mod_01_recon.py
+./src/brain
+./src/brain/prompt_cache.py
+./src/brain/rnn_core.py
+./src/brain/__pycache__
+./src/brain/brain_interface.py
+./src/brain/__init__.py
+./src/__init__.py
+./setup.py
+./memory_stream.jsonl
+./vitalis_system_compilation.log
+./fsi_main.py
+./hf_upload.py
+./organism_main.py
+./requirements.txt
+./pyproject.toml
+./BENCHMARKS.md
+./CONTRIBUTING.md
+
+=========================================================================
+ FILE PATH: app.py
+=========================================================================
+#!/usr/bin/env python3
+import os
+import sys
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent.absolute()
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+
+from core.brain import VitalisBrain
+from extensions.dreamer import Dreamer
+from extensions.temp_scheduler import TemperatureScheduler
+from src.energy.free_energy import FreeEnergyEngine
+
+def main():
+    print("[*] Launching Vitalis Bio-AI Engine with Active Inference (FEP)...")
+    brain = VitalisBrain()
+    temp_scheduler = TemperatureScheduler(brain)
+    
+    # Instantiate active FEP layer tracking systems
+    fe_engine = FreeEnergyEngine(alpha=0.85)
+    
+    dreamer = Dreamer(brain, interval_sec=600)
+    dreamer.start()
+    
+    print("[+] Engine operational. Free-Energy optimization loops tracking live telemetry.")
+    print("Telemetry In > ", end="")
+    
+    while True:
+        try:
+            user_input = input().strip()
+            if not user_input:
+                print("Telemetry In > ", end="")
+                continue
+                
+            if user_input.lower() in ["exit", "quit"]:
+                dreamer.stop()
+                break
+            
+            # Step A: Compute raw observation tokens and extract variational log probability
+            tokens = brain._tokenize(user_input)
+            logprob = brain.calculate_last_logprob(tokens)
+            
+            # Step B: Pass surprise trace directly into FEP state machine
+            fe_engine.ingest_observation(logprob)
+            
+            # Step C: Inject dynamic calculated FEP temperature scaling parameter straight to brain core
+            brain.current_temperature = fe_engine.temperature_factor(base_temp=0.8)
+            
+            # Run baseline background ticks
+            temp_scheduler.tick()
+            
+            # Execute main pipeline logic processing sequence
+            response = brain.process(user_input)
+                
+            print(f"Metrics Out > {response} [FE: {fe_engine.free_energy:.4f} | Temp: {brain.current_temperature:.4f}]\nTelemetry In > ", end="")
+        except (KeyboardInterrupt, EOFError):
+            dreamer.stop()
+            break
+
+if __name__ == "__main__":
+    main()
+                print(f"Metrics Out > {response} [FE: {fe_engine.free_energy:.4f} | Temp: {brain.current_temperature:.4f}]\nTelemetry In > ", end="")
+        except (KeyboardInterrupt, EOFError):
+            dreamer.stop()
+            break
+
+if __name__ == "__main__":
+    main()
+
+
+
+=========================================================================
+ FILE PATH: run_vitalis.py
+=========================================================================
+#!/usr/bin/env python3
+import os
+import sys
+import json
+import argparse
+from core.brain import VitalisBrain
+
+def run_training():
+    print("[*] Initiating Synaptic Matrix Optimization (Teacher Forcing)...")
+    brain = VitalisBrain()
+    # Mock stream for training if data_path missing
+    data = [{"prompt": "status", "response": "nominal"}, {"prompt": "init", "response": "ready"}]
+    
+    for epoch in range(1, 6):
+        for entry in data:
+            brain.execute_teacher_forcing(entry["prompt"], entry["response"])
+        print(f"   -> Epoch {epoch}/5 Complete.")
+    print("[+] Optimization successful.")
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--train", action="store_true")
+    args = parser.parse_args()
+    
+    if args.train:
+        run_training()
+    else:
+        from app import main
+        main()
+
+
+
+=========================================================================
+ FILE PATH: requirements.txt
+=========================================================================
+annotated-doc==0.0.4
+anyio==4.13.0
+certifi==2026.5.20
+click==8.4.1
+filelock==3.29.0
+fsspec==2026.4.0
+h11==0.16.0
+hf-xet==1.5.0
+httpcore==1.0.9
+httpx==0.28.1
+huggingface_hub==1.16.4
+idna==3.16
+markdown-it-py==4.2.0
+mdurl==0.1.2
+packaging==26.2
+Pygments==2.20.0
+PyYAML==6.0.3
+rich==15.0.0
+shellingham==1.5.4
+tqdm==4.67.3
+typer==0.25.1
+typing_extensions==4.15.0
+
+
+
+=========================================================================
+ FILE PATH: README.md
+=========================================================================
+---
+license: gpl-3.0
+tags:
+- synthetic-intelligence
+- sovereign-ai
+- open-source
+---
+
+# Vitalis_Core
+### Ferrell Synthetic Intelligence (FSI)
+**Built by Neuro_Nomad**
+
+Vitalis_Core is a sovereign synthetic intelligence framework engineered
+for local, air-gapped deployment. Designed for modularity and
+kernel-level integration, it provides the fundamental cognitive and
+sensory infrastructure for autonomous synthetic entities.
+
+---
+
+## Technical Architecture
+
+Vitalis_Core operates as a standalone framework decoupled from
+cloud-dependent APIs.
+
+- Core Engine: Python 3.11+ implementation, minimal external dependencies
+- Kernel Integration: Direct netlink and procfs interfacing
+- Sovereign Shield: Integrity protection layer for memory management
+- Cognitive Framework: Hierarchical memory and action engine
+- Adaptive Tiers: kids, basic, enthusiast, professional, school
+
+---
+
+## System Requirements
+- OS: Linux (Debian-based, Kernel 6.1+)
+- Python: 3.11 or higher
+- Memory: Optimized for ARM64/x86 environments
+
+---
+
+## Installation
+
+git clone https://github.com/AnonymousNomad/Vitalis_core
+cd Vitalis_core
+python3 fsi_main.py
+
+---
+
+## Roadmap
+- Core stability and heartbeat engine optimization
+- Mobile companion app for training and configuration
+- Kernel interface hardening for defense protocols
+
+---
+
+## License
+GPL-3.0 — Contributions welcome. See CONTRIBUTING.md.
+EOF
+
+
+
+=========================================================================
+ FILE PATH: core/brain.py
+=========================================================================
+#!/usr/bin/env python3
+import numpy as np
+import json
+import os
+import time
+
+class VitalisBrain:
+    def __init__(self):
+        self.state = "aware"
+        self.cycle = 0
+        self.last_input = None
+        self.current_temperature = 0.7
+        
+        # Local Matrix Layer Variables
+        self.vocab_size = 256
+        self.embedding_dim = 16
+        
+        np.random.seed(42)
+        self.weights = np.random.randn(self.vocab_size, self.embedding_dim) * 0.1
+        self.output_layer = np.random.randn(self.embedding_dim, self.vocab_size) * 0.1
+
+    def _tokenize(self, text):
+        return [ord(char) % self.vocab_size for char in text]
+
+    def calculate_last_logprob(self, tokens):
+        """Calculates mathematical log probability over input token traces via softmax scaling."""
+        if not tokens:
+            return -2.0 # Baseline nominal unexpected state value
+        embeddings = self.weights[tokens]
+        aggregated_state = np.mean(embeddings, axis=0)
+        logits = np.dot(aggregated_state, self.output_layer)
+        
+        # Softmax computation sequence
+        shifted_logits = logits - np.max(logits)
+        probs = np.exp(shifted_logits) / np.sum(np.exp(shifted_logits))
+        
+        # Return average log probability of observation vector trace safely
+        target_probs = probs[tokens]
+        return float(np.mean(np.log(target_probs + 1e-12)))
+
+    def process(self, input_data):
+        self.cycle += 1
+        self.last_input = input_data
+        
+        if not input_data or input_data.strip() == "":
+            return "IDLE: Waiting for telemetry stream matrix inputs."
+            
+        tokens = self._tokenize(input_data)
+        if not tokens:
+            return "ERROR: Signal translation collapsed."
+            
+        lowered = input_data.lower()
+        if any(w in lowered for w in ["train", "learn", "teach", "optimize"]):
+            return f"SYSTEM_TRANSITION: Active matrix state ready for parameter optimization loops."
+        elif any(w in lowered for w in ["status", "metrics", "mood", "energy"]):
+            return f"DIAGNOSTIC_STATE: Integrity secure. Temperature={self.current_temperature:.4f}."
+            
+        return f"PROCESSED_STREAM [Sync Node {self.cycle}]: Telemetry ingested successfully."
+
+    def execute_teacher_forcing(self, prompt, target_response):
+        prompt_tokens = self._tokenize(prompt)
+        target_tokens = self._tokenize(target_response)
+        if not prompt_tokens or not target_tokens:
+            return False
+        learning_rate = 0.05
+        for t in target_tokens:
+            for p in prompt_tokens:
+                self.weights[p] += learning_rate * 0.01
+                self.output_layer[:, t] += learning_rate * 0.01
+        return True
+
+    def status(self):
+        return {"state": self.state, "cycle": self.cycle, "timestamp": time.time(), "temp": self.current_temperature}
+
+
+
+=========================================================================
+ FILE PATH: extensions/dreamer.py
+=========================================================================
+import threading
+import time
+import os
+from datetime import datetime
+
+class Dreamer:
+    def __init__(self, brain, interval_sec=600):
+        self.brain = brain
+        self.interval = interval_sec
+        self._stop = threading.Event()
+        self.thread = threading.Thread(target=self._loop, daemon=True)
+
+    def start(self):
+        self.thread.start()
+
+    def stop(self):
+        self._stop.set()
+        self.thread.join()
+
+    def _loop(self):
+        while not self._stop.is_set():
+            if hasattr(self.brain, "generate_response"):
+                dream = self.brain.generate_response("Internal synaptic drift consolidation sequence.", "SYSTEM: DREAM_STATE")
+            elif hasattr(self.brain, "think"):
+                dream = self.brain.think("SYSTEM: DREAM_STATE_TRIGGER")
+            else:
+                dream = "Synaptic replay executed normally."
+
+            ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+            path = os.path.expanduser(f"~/vitalis_core/storage/dreams/{ts}.txt")
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(dream)
+            time.sleep(self.interval)
+
+
+
+=========================================================================
+ FILE PATH: extensions/temp_scheduler.py
+=========================================================================
+class TemperatureScheduler:
+    def __init__(self, brain):
+        self.brain = brain
+        self.adrenaline = 0.5
+        self.cortisol = 0.3
+        self.base_temp = 0.8
+
+    def tick(self):
+        self.adrenaline = max(0.1, self.adrenaline - 0.01)
+        self.cortisol = max(0.1, self.cortisol - 0.005)
+        computed_temp = self.base_temp * (1.0 + (0.3 * self.adrenaline) - (0.1 * self.cortisol))
+        target_temp = max(0.4, min(1.4, computed_temp))
+        if hasattr(self.brain, "current_temperature"):
+            self.brain.current_temperature = target_temp
+
+
+
+=========================================================================
+ FILE PATH: extensions/evolutionary_lora.py
+=========================================================================
+import numpy as np
+import json
+import os
+
+class EvolutionaryLoRA:
+    def __init__(self, brain, evaluation_set=None):
+        self.brain = brain
+        self.eval_set = evaluation_set
+
+    def run_generation(self):
+        out_path = os.path.expanduser("~/vitalis_core/storage/lora_delta_evo.json")
+        os.makedirs(os.path.dirname(out_path), exist_ok=True)
+        mock_delta = {
+            "layer_delta_A": np.random.randn(4, 4).tolist(), 
+            "layer_delta_B": np.random.randn(4, 4).tolist()
+        }
+        with open(out_path, "w") as f:
+            json.dump(mock_delta, f, indent=2)
+        print(f"[+] Synaptic optimization trace exported to {out_path}")
+
+
+
+[-] WARNING: Core asset file missing from current directory structure: plugins/self_audit_tool.py

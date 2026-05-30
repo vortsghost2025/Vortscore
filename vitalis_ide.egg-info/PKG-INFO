@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: vitalis_ide
+Version: 2.2.0
+Summary: Sovereign Intelligence Framework
+Author-email: Neuro_Nomad <ferrell.tech@example.com>
+License-File: LICENSE
+Requires-Dist: click
+Requires-Dist: numpy
+Requires-Dist: torch
+Requires-Dist: transformers
+Requires-Dist: faiss-cpu
+Dynamic: license-file
